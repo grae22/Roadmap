@@ -1,14 +1,46 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using Roadmapp.Core;
 
 namespace Roadmapp.UI
 {
-  public partial class Main : Form
+  partial class Main : Form
   {
     //-------------------------------------------------------------------------
 
-    public Main()
+    private Roadmap ActiveRoadmap { get; set; }
+
+    //-------------------------------------------------------------------------
+
+    public Main( string roadmapFilename )
     {
-      InitializeComponent();
+      try
+      {
+        InitializeComponent();
+
+        LoadRoadmap( roadmapFilename );
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void LoadRoadmap( string filename )
+    {
+      try
+      {
+        ActiveRoadmap = Roadmap.InstantiateFromFile( filename );
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException(
+          new Exception(
+            "Failed to load Roadmap '" + filename + "'.",
+            ex ) );
+      }
     }
 
     //-------------------------------------------------------------------------
