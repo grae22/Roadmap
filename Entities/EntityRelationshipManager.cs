@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Roadmapp.Entities
 {
@@ -84,6 +85,31 @@ namespace Roadmapp.Entities
       }
 
       return true;
+    }
+
+    //-------------------------------------------------------------------------
+
+    public void RemoveDependency( Entity dependant, Entity dependency )
+    {
+      if( Dependencies.ContainsKey( dependant ) )
+      {
+        Dependencies[ dependant ].Remove( dependency );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    public void GetDependencies( Entity dependant,
+                                 out ReadOnlyCollection< Entity > dependencies )
+    {
+      List< Entity > list = new List< Entity >();
+
+      if( Dependencies.ContainsKey( dependant ) )
+      {
+        list = Dependencies[ dependant ];
+      }
+
+      dependencies = new ReadOnlyCollection< Entity >( list );
     }
 
     //-------------------------------------------------------------------------
