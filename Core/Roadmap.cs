@@ -10,6 +10,33 @@ namespace Roadmapp.Core
   {
     //-------------------------------------------------------------------------
 
+    public static Roadmap InstantiateFromFile( string absFilename )
+    {
+      XmlDocument xmlDoc = new XmlDocument();
+      xmlDoc.Load( absFilename );
+
+      Roadmap roadmap = new Roadmap();
+      roadmap.InitialiseFromXml( xmlDoc.FirstChild as XmlElement );
+
+      return roadmap;
+    }
+
+    //-------------------------------------------------------------------------
+
+    public static void WriteToFile( string absFilename,
+                                    Roadmap roadmap )
+    {
+      XmlDocument xmlDoc = new XmlDocument();
+      XmlElement xml = xmlDoc.CreateElement( "Roadmap" );
+      xmlDoc.AppendChild( xml );
+
+      roadmap.GetAsXml( xml );
+
+      xmlDoc.Save( absFilename );
+    }
+
+    //=========================================================================
+
     private EntityRelationshipManager EntityRelationships { get; set; }
     private EntityFactory EntityFactory { get; set; }
 

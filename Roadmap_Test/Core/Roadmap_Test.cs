@@ -113,5 +113,47 @@ namespace Roadmapp_Test.Core
     }
 
     //-------------------------------------------------------------------------
+
+    [TestMethod]
+    public void XmlFilePersistence()
+    {
+      // Set up allowed dependencies.
+      EntityRelationshipManager.AddAllowedDependency(
+        typeof( EntityMocks.EntityMock1 ),
+        typeof( EntityMocks.EntityMock2 ) );
+
+      // Add some entities.
+      EntityMocks.EntityMock1 mock1 = TestObject.AddEntity< EntityMocks.EntityMock1 >();
+      EntityMocks.EntityMock2 mock2_1 = TestObject.AddEntity< EntityMocks.EntityMock2 >();
+      EntityMocks.EntityMock2 mock2_2 = TestObject.AddEntity< EntityMocks.EntityMock2 >();
+
+      // Add dependencies.
+      mock1.AddDependency( mock2_1 );
+      mock1.AddDependency( mock2_2 );
+
+      // Write to file.
+      Roadmap.WriteToFile( "XmlFilePersistence.roadmap", TestObject );
+
+      // Initialise a new roadmap from file.
+      Roadmap newRoadmap = Roadmap.InstantiateFromFile( "XmlFilePersistence.roadmap" );
+
+      // Check the entities are present.
+      Entity newMock1 = newRoadmap.GetEntity( mock1.Title );
+      Entity newMock2_1 = newRoadmap.GetEntity( mock2_1.Title );
+      Entity newMock2_2 = newRoadmap.GetEntity( mock2_2.Title );
+
+      Assert.IsNotNull( newMock1.Title, "Entity not found." );
+      Assert.IsNotNull( newMock2_1.Title, "Entity not found." );
+      Assert.IsNotNull( newMock2_2.Title, "Entity not found." );
+
+      // Check the dependencies are present.
+      ReadOnlyCollection< Entity > dependencies;
+      newRoadmap.GetDependencies( newMock1, out dependencies );
+
+      Assert.IsTrue( dependencies.Contains( newMock2_1 ), "Dependency not found." );
+      Assert.IsTrue( dependencies.Contains( newMock2_2 ), "Dependency not found." );
+    }
+
+    //-------------------------------------------------------------------------
   }
 }
