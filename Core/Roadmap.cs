@@ -59,5 +59,17 @@ namespace Roadmapp.Core
     }
 
     //-------------------------------------------------------------------------
+
+    public void RemoveEntity( Entity entity )
+    {
+      Type type = entity.GetType();
+
+      if( Entities.ContainsKey( type ) )
+      {
+        Entities[ type ].Remove( entity );
+      }
+    }
+
+    //-------------------------------------------------------------------------
   }
 }

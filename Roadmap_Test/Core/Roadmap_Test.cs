@@ -43,5 +43,28 @@ namespace Roadmapp_Test.Core
     }
 
     //-------------------------------------------------------------------------
+
+    [TestMethod]
+    public void RemoveEntity()
+    {
+      // Add some entities.
+      EntityMocks.EntityMock1 mock1 = TestObject.AddEntity< EntityMocks.EntityMock1 >();
+      EntityMocks.EntityMock2 mock2 = TestObject.AddEntity< EntityMocks.EntityMock2 >();
+
+      // Remove one.
+      TestObject.RemoveEntity( mock1 );
+      
+      // Check it's gone.
+      ReadOnlyCollection< EntityMocks.EntityMock1 > mock1Entities;
+      TestObject.GetEntities< EntityMocks.EntityMock1 >( out mock1Entities );
+      Assert.IsFalse( mock1Entities.Contains( mock1 ), "Entity is still present." );
+      
+      // Check the other is still there.
+      ReadOnlyCollection< EntityMocks.EntityMock2 > mock2Entities;
+      TestObject.GetEntities< EntityMocks.EntityMock2 >( out mock2Entities );
+      Assert.IsTrue( mock2Entities.Contains( mock2 ), "Failed to retrieve entity." );
+    }
+    
+    //-------------------------------------------------------------------------
   }
 }
