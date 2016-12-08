@@ -23,16 +23,19 @@ namespace Roadmapp_Test.Entities
     [TestMethod]
     public void AllowedDependencies()
     {
-      TestObject.AddAllowedDependency( typeof( EntityMocks.EntityMock1 ),
-                                       typeof( EntityMocks.EntityMock2 ) );
+      EntityRelationshipManager.AddAllowedDependency(
+        typeof( EntityMocks.EntityMock1 ),
+        typeof( EntityMocks.EntityMock2 ) );
 
       Assert.IsTrue(
-        TestObject.GetIsDependencyAllowed( typeof( EntityMocks.EntityMock1 ),
-                                           typeof( EntityMocks.EntityMock2 ) ) );
+        EntityRelationshipManager.GetIsDependencyAllowed(
+          typeof( EntityMocks.EntityMock1 ),
+          typeof( EntityMocks.EntityMock2 ) ) );
 
       Assert.IsFalse(
-        TestObject.GetIsDependencyAllowed( typeof( EntityMocks.EntityMock2 ),
-                                           typeof( EntityMocks.EntityMock1 ) ) );
+        EntityRelationshipManager.GetIsDependencyAllowed(
+          typeof( EntityMocks.EntityMock2 ),
+          typeof( EntityMocks.EntityMock1 ) ) );
     }
 
     //-------------------------------------------------------------------------
@@ -40,8 +43,9 @@ namespace Roadmapp_Test.Entities
     [TestMethod]
     public void AddDependency()
     {
-      TestObject.AddAllowedDependency( typeof( EntityMocks.EntityMock1 ),
-                                       typeof( EntityMocks.EntityMock2 ) );
+      EntityRelationshipManager.AddAllowedDependency(
+        typeof( EntityMocks.EntityMock1 ),
+        typeof( EntityMocks.EntityMock2 ) );
 
       EntityMocks.EntityMock1 mock1 = new EntityMocks.EntityMock1( TestObject );
       EntityMocks.EntityMock2 mock2 = new EntityMocks.EntityMock2( TestObject );

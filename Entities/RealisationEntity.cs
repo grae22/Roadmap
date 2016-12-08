@@ -4,13 +4,19 @@
   {
     //-------------------------------------------------------------------------
 
+    static RealisationEntity()
+    {
+      // Specify the entities this type of entity can depend on.
+      EntityRelationshipManager.AddAllowedDependency( typeof( RealisationEntity ), typeof( RealisationEntity ) );
+      EntityRelationshipManager.AddAllowedDependency( typeof( RealisationEntity ), typeof( ActionEntity ) );
+    }
+
+    //-------------------------------------------------------------------------
+
     public RealisationEntity( EntityRelationshipManager relationshipManager )
     :
       base( relationshipManager )
     {
-      // Specify the entities this type of entity can depend on.
-      Relationships.AddAllowedDependency( typeof( RealisationEntity ), typeof( RealisationEntity ) );
-      Relationships.AddAllowedDependency( typeof( RealisationEntity ), typeof( ActionEntity ) );
     }
 
     //-------------------------------------------------------------------------

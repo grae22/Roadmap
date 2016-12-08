@@ -7,7 +7,7 @@ namespace Roadmapp.Entities
   {
     //-------------------------------------------------------------------------
 
-    private Dictionary< Type, List< Type > > AllowedDependencies { get; set; } =
+    private static Dictionary< Type, List< Type > > AllowedDependencies { get; set; } =
       new Dictionary< Type, List< Type > >();
 
     private Dictionary< Entity, List< Entity > > Dependencies { get; set; } =
@@ -15,7 +15,7 @@ namespace Roadmapp.Entities
 
     //-------------------------------------------------------------------------
 
-    public void AddAllowedDependency( Type dependant, Type dependency )
+    public static void AddAllowedDependency( Type dependant, Type dependency )
     {
       // Types must extend Entity class.
       if( dependant.IsSubclassOf( typeof( Entity ) ) == false ||
@@ -41,7 +41,7 @@ namespace Roadmapp.Entities
 
     //-------------------------------------------------------------------------
 
-    public bool GetIsDependencyAllowed( Type dependant, Type dependency )
+    public static bool GetIsDependencyAllowed( Type dependant, Type dependency )
     {
       if( AllowedDependencies.ContainsKey( dependant ) )
       {

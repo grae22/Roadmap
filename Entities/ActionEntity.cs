@@ -4,12 +4,18 @@
   {
     //-------------------------------------------------------------------------
 
+    static ActionEntity()
+    {
+      // Specify the entities this type of entity can depend on.
+      EntityRelationshipManager.AddAllowedDependency( typeof( ActionEntity ), typeof( ActionEntity ) );
+    }
+
+    //-------------------------------------------------------------------------
+
     public ActionEntity( EntityRelationshipManager relationshipManager )
     :
       base( relationshipManager )
     {
-      // Specify the entities this type of entity can depend on.
-      Relationships.AddAllowedDependency( typeof( ActionEntity ), typeof( ActionEntity ) );
     }
 
     //-------------------------------------------------------------------------
