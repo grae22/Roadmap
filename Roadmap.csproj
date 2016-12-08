@@ -47,6 +47,7 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityFactory.cs" />
     <Compile Include="Entities\EntityRelationshipManager.cs" />
+    <Compile Include="Entities\ActionEntity.cs" />
     <Compile Include="Entities\RealisationEntity.cs" />
     <Compile Include="Entities\StrategyEntity.cs" />
     <Compile Include="Entities\GoalEntity.cs" />

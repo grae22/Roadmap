@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Entities\EntityMocks.cs" />
     <Compile Include="Entities\EntityRelationshipManager_Test.cs" />
+    <Compile Include="Entities\ActionEntity_Test.cs" />
     <Compile Include="Entities\RealisationEntity_Test.cs" />
     <Compile Include="Entities\StrategyEntity_Test.cs" />
     <Compile Include="Entities\GoalEntity_Test.cs" />

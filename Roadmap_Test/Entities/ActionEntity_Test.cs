@@ -4,19 +4,19 @@ using Roadmap.Entities;
 namespace Roadmap_Test.Entities
 {
   [TestClass]
-  public class RealisationEntity_Test
+  public class ActionEntity_Test
   {
     //-------------------------------------------------------------------------
 
     private EntityFactory Factory = new EntityFactory();
-    private RealisationEntity TestObject { get; set; }
+    private ActionEntity TestObject { get; set; }
 
     //-------------------------------------------------------------------------
 
     [TestInitialize]
     public void Initialise()
     {
-      TestObject = Factory.GetRealisationEntity();
+      TestObject = Factory.GetActionEntity();
       Assert.IsNotNull( TestObject, "Failed to instantiate TestObject." );
     }
 
@@ -36,7 +36,7 @@ namespace Roadmap_Test.Entities
       GoalEntity other = Factory.GetGoalEntity();
 
       bool result = TestObject.AddDependency( other );
-      Assert.IsFalse( result, "Should not be able to depend on Goal entities." );
+      Assert.IsFalse( result, "Should not be able to depend on Goals entities." );
     }
 
     //-------------------------------------------------------------------------
@@ -47,29 +47,29 @@ namespace Roadmap_Test.Entities
       StrategyEntity strategy = Factory.GetStrategyEntity();
 
       bool result = TestObject.AddDependency( strategy );
-      Assert.IsFalse( result, "Should not be able to depend on other Strategy entities." );
+      Assert.IsFalse( result, "Should not be able to depend on Strategy entities." );
     }
 
     //-------------------------------------------------------------------------
 
     [TestMethod]
-    public void DependOnAnotherRealisation()
+    public void DependOnRealisation()
     {
       RealisationEntity realisation = Factory.GetRealisationEntity();
 
       bool result = TestObject.AddDependency( realisation );
-      Assert.IsTrue( result, "Should be able to depend on Realisation entities." );
+      Assert.IsFalse( result, "Should not be able to depend on Realisation entities." );
     }
 
     //-------------------------------------------------------------------------
 
     [TestMethod]
-    public void DependOnAction()
+    public void DependOnOtherAction()
     {
       ActionEntity action = Factory.GetActionEntity();
 
       bool result = TestObject.AddDependency( action );
-      Assert.IsTrue( result, "Should be able to depend on Realisation entities." );
+      Assert.IsTrue( result, "Should be able to depend on other Action entities." );
     }
 
     //-------------------------------------------------------------------------

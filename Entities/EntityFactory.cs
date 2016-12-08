@@ -41,5 +41,12 @@ namespace Roadmap.Entities
     }
 
     //-------------------------------------------------------------------------
+
+    public ActionEntity GetActionEntity()
+    {
+      return new ActionEntity( EntityRelationships );
+    }
+
+    //-------------------------------------------------------------------------
   }
 }

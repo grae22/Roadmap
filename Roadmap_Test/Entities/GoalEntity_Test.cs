@@ -62,5 +62,16 @@ namespace Roadmap_Test.Entities
     }
 
     //-------------------------------------------------------------------------
+
+    [TestMethod]
+    public void DependOnAction()
+    {
+      ActionEntity action = Factory.GetActionEntity();
+
+      bool result = TestObject.AddDependency( action );
+      Assert.IsFalse( result, "Should not be able to depend on Action entities." );
+    }
+
+    //-------------------------------------------------------------------------
   }
 }
