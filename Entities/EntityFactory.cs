@@ -21,6 +21,23 @@ namespace Roadmap.Entities
 
     //-------------------------------------------------------------------------
 
+    public Entity GetEntity( string typeName )
+    {
+      try
+      {
+        return
+          (Entity)Activator.CreateInstance(
+            Type.GetType( typeName ),
+            new object[] { EntityRelationships } );
+      }
+      catch( Exception )
+      {
+        return null;
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
     public GoalEntity GetGoalEntity()
     {
       return new GoalEntity( EntityRelationships );

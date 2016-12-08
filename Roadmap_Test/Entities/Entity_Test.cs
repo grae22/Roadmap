@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Xml;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Roadmap.Entities;
 
 namespace Roadmap_Test.Entities
@@ -8,6 +9,7 @@ namespace Roadmap_Test.Entities
   {
     //-------------------------------------------------------------------------
 
+    private EntityFactory Factory = new EntityFactory();
     private Entity TestObject { get; set; }
 
     //-------------------------------------------------------------------------
@@ -15,9 +17,7 @@ namespace Roadmap_Test.Entities
     [TestInitialize]
     public void Initialise()
     {
-      EntityFactory factory = new EntityFactory();
-
-      TestObject = factory.GetEntity< EntityMocks.EntityMock1 >();
+      TestObject = Factory.GetEntity< EntityMocks.EntityMock1 >();
       Assert.IsNotNull( TestObject, "Failed to instantiate TestObject." );
     }
 
@@ -45,6 +45,36 @@ namespace Roadmap_Test.Entities
     {
       TestObject.Description = "Description";
       Assert.AreEqual( "Description", TestObject.Description );
+    }
+
+    //-------------------------------------------------------------------------
+
+    [TestMethod]
+    public void XmlPersistence()
+    {
+      // Set property values.
+      TestObject.Title = "TestObject";
+      TestObject.Description = "Test description...";
+
+      // Get entity as xml.
+      XmlDocument xmlDoc = new XmlDocument();
+      XmlElement xml = xmlDoc.CreateElement( "Entity" );
+
+      TestObject.GetAsXml( xml );
+
+      // Instantiate a new entity from the xml.
+      Entity newEntity = Entity.InstantiateFromXml( Factory, xml );
+      Assert.IsNotNull( newEntity, "Failed to instantiate." );
+
+      // Correct type of entity instantiated?
+      Assert.AreEqual(
+        typeof( EntityMocks.EntityMock1 ),
+        newEntity.GetType(),
+        "Incorrect entity type instantiated." );
+
+      // Test property values.
+      Assert.AreEqual( TestObject.Title, newEntity.Title );
+      Assert.AreEqual( TestObject.Description, newEntity.Description );
     }
 
     //-------------------------------------------------------------------------
