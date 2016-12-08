@@ -7,8 +7,8 @@
     <ProjectGuid>{2EAF3A3A-7E22-4CC0-9B6A-9ABD88B5EA38}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Roadmap</RootNamespace>
-    <AssemblyName>Roadmap</AssemblyName>
+    <RootNamespace>Roadmapp</RootNamespace>
+    <AssemblyName>Roadmapp</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -51,6 +51,7 @@
     <Compile Include="Entities\RealisationEntity.cs" />
     <Compile Include="Entities\StrategyEntity.cs" />
     <Compile Include="Entities\GoalEntity.cs" />
+    <Compile Include="Core\Roadmap.cs" />
     <Compile Include="UI\Main.cs">
       <SubType>Form</SubType>
     </Compile>

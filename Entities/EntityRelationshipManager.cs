@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Roadmap.Entities
+namespace Roadmapp.Entities
 {
   class EntityRelationshipManager
   {

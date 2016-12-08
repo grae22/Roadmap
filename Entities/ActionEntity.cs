@@ -1,4 +1,4 @@
-﻿namespace Roadmap.Entities
+﻿namespace Roadmapp.Entities
 {
   class ActionEntity : Entity
   {

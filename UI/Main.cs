@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Roadmap.UI
+namespace Roadmapp.UI
 {
   public partial class Main : Form
   {

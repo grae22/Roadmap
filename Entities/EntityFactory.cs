@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Roadmap.Entities
+namespace Roadmapp.Entities
 {
   class EntityFactory
   {

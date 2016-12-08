@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 
-namespace Roadmap.Entities
+namespace Roadmapp.Entities
 {
   abstract class Entity
   {
