@@ -6,8 +6,14 @@ namespace Roadmapp.Entities
   {
     //-------------------------------------------------------------------------
 
-    private EntityRelationshipManager EntityRelationships { get; set; } =
-      new EntityRelationshipManager();
+    private EntityRelationshipManager EntityRelationships { get; set; }
+
+    //-------------------------------------------------------------------------
+
+    public EntityFactory( EntityRelationshipManager relationshipManager )
+    {
+      EntityRelationships = relationshipManager;
+    }
 
     //-------------------------------------------------------------------------
 

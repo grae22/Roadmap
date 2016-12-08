@@ -8,7 +8,7 @@ namespace Roadmapp_Test.Entities
   {
     //-------------------------------------------------------------------------
 
-    private EntityFactory Factory = new EntityFactory();
+    private EntityFactory Factory = new EntityFactory( new EntityRelationshipManager() );
     private StrategyEntity TestObject { get; set; }
 
     //-------------------------------------------------------------------------
