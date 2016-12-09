@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
@@ -52,6 +53,12 @@
     <Compile Include="Entities\StrategyEntity.cs" />
     <Compile Include="Entities\GoalEntity.cs" />
     <Compile Include="Core\Roadmap.cs" />
+    <Compile Include="UI\EntityDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EntityDlg.Designer.cs">
+      <DependentUpon>EntityDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +77,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\EntityDlg.resx">
+      <DependentUpon>EntityDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

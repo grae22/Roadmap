@@ -1,7 +1,19 @@
-﻿namespace Roadmapp.Entities
+﻿using System;
+
+namespace Roadmapp.Entities
 {
   class ActionEntity : Entity
   {
+    //-------------------------------------------------------------------------
+
+    public override string TypeName
+    {
+      get
+      {
+        return "Action";
+      }
+    }
+
     //-------------------------------------------------------------------------
 
     static ActionEntity()

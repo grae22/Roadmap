@@ -31,8 +31,12 @@ namespace Roadmapp_Test.Core
       EntityMocks.EntityMock1 mock1 = TestObject.AddEntity< EntityMocks.EntityMock1 >();
       Assert.IsNotNull( mock1, "Failed to add entity." );
 
-      EntityMocks.EntityMock2 mock2 = TestObject.AddEntity< EntityMocks.EntityMock2 >();
-      Assert.IsNotNull( mock2, "Failed to add entity." );
+      EntityMocks.EntityMock2 mock2_1 = TestObject.AddEntity< EntityMocks.EntityMock2 >();
+      Assert.IsNotNull( mock2_1, "Failed to add entity." );
+
+      EntityMocks.EntityMock2 mock2_2 =
+        (EntityMocks.EntityMock2)TestObject.AddEntity( typeof( EntityMocks.EntityMock2 ) );
+      Assert.IsNotNull( mock2_2, "Failed to add entity." );
 
       // Check they're there.
       ReadOnlyDictionary< string, EntityMocks.EntityMock1 > mock1Entities;
@@ -41,7 +45,8 @@ namespace Roadmapp_Test.Core
 
       ReadOnlyDictionary< string, EntityMocks.EntityMock2 > mock2Entities;
       TestObject.GetEntities< EntityMocks.EntityMock2 >( out mock2Entities );
-      Assert.IsTrue( mock2Entities.ContainsKey( mock2.Title ), "Failed to retrieve entity." );
+      Assert.IsTrue( mock2Entities.ContainsKey( mock2_1.Title ), "Failed to retrieve entity." );
+      Assert.IsTrue( mock2Entities.ContainsKey( mock2_2.Title ), "Failed to retrieve entity." );
     }
 
     //-------------------------------------------------------------------------

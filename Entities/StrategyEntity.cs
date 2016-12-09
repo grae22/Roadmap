@@ -4,6 +4,16 @@
   {
     //-------------------------------------------------------------------------
 
+    public override string TypeName
+    {
+      get
+      {
+        return "Strategy";
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
     static StrategyEntity()
     {
       // Specify the entities this type of entity can depend on.

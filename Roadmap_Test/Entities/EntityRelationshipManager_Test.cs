@@ -63,6 +63,9 @@ namespace Roadmapp_Test.Entities
       ReadOnlyCollection< Entity > dependencies;
       TestObject.GetDependencies( mock1, out dependencies );
       Assert.IsTrue( dependencies.Contains( mock2 ), "Dependency not found." );
+
+      Assert.IsTrue( TestObject.GetDoesDependencyExist( mock1, mock2 ) );
+      Assert.IsFalse( TestObject.GetDoesDependencyExist( mock2, mock1 ) );
     }
 
     //-------------------------------------------------------------------------

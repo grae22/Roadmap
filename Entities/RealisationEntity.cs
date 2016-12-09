@@ -4,6 +4,16 @@
   {
     //-------------------------------------------------------------------------
 
+    public override string TypeName
+    {
+      get
+      {
+        return "Realisation";
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
     static RealisationEntity()
     {
       // Specify the entities this type of entity can depend on.

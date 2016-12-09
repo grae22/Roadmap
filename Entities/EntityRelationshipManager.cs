@@ -114,6 +114,19 @@ namespace Roadmapp.Entities
 
     //-------------------------------------------------------------------------
 
+    public bool GetDoesDependencyExist( Entity dependant,
+                                        Entity dependency )
+    {
+      if( Dependencies.ContainsKey( dependant ) )
+      {
+        return Dependencies[ dependant ].Contains( dependency );
+      }
+
+      return false;
+    }
+
+    //-------------------------------------------------------------------------
+
     public void RemoveAllDependencies()
     {
       Dependencies.Clear();

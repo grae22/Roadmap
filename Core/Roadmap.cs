@@ -90,6 +90,31 @@ namespace Roadmapp.Core
 
     //-------------------------------------------------------------------------
 
+    public Entity AddEntity( Type type )
+    {
+      Entity entity = EntityFactory.GetEntity( type.AssemblyQualifiedName );
+
+      if( entity != null )
+      {
+        // Construct a title.
+        string title = "Unnamed";
+        int i = 1;
+        while( GetIsTitleUnique( title ) == false )
+        {
+          title = string.Format( "Unnamed{0}", i++ );
+        }
+
+        entity.Title = title;
+
+        // Add it.
+        AddEntity( entity );
+      }
+
+      return entity;
+    }
+
+    //-------------------------------------------------------------------------
+
     private void AddEntity( Entity entity )
     {
       if( Entities.ContainsKey( entity.GetType() ) == false )

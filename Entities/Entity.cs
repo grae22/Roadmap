@@ -28,6 +28,9 @@ namespace Roadmapp.Entities
 
     //=========================================================================
 
+    // Name of the entity type (e.g. Goal, Strategy, etc.).
+    abstract public string TypeName { get; }
+
     // General.
     public string Title { get; set; }
     public string Description { get; set; }
@@ -47,6 +50,13 @@ namespace Roadmapp.Entities
     public bool AddDependency( Entity dependency )
     {
       return Relationships.AddDependency( this, dependency );
+    }
+
+    //-------------------------------------------------------------------------
+
+    public bool GetIsDependantOn( Entity entity )
+    {
+      return Relationships.GetDoesDependencyExist( this, entity );
     }
 
     //-------------------------------------------------------------------------
@@ -89,6 +99,13 @@ namespace Roadmapp.Entities
       }
 
       Description = ( xml[ "Description" ] as XmlElement ).InnerText;
+    }
+
+    //-------------------------------------------------------------------------
+
+    public override string ToString()
+    {
+      return Title;
     }
 
     //-------------------------------------------------------------------------
