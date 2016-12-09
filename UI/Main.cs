@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using Roadmapp.Core;
 using Roadmapp.Entities;
+using Roadmapp.Diagrams;
 
 namespace Roadmapp.UI
 {
@@ -513,6 +514,25 @@ namespace Roadmapp.UI
       {
         uiGoals.SelectedItem = null;
         PopulateEntityLists();
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiDiagramsGenerate_Click( object sender, EventArgs e )
+    {
+      try
+      {
+        GraphVizDiagram diagram =
+          new GraphVizDiagram(
+            @"e:\programs\graphviz\bin\",
+            "DiagramTemplate.gv" );
+
+        
       }
       catch( Exception ex )
       {

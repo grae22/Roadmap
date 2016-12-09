@@ -48,6 +48,8 @@
       this.uiRemoveStrategy = new System.Windows.Forms.Button();
       this.uiAddStrategy = new System.Windows.Forms.Button();
       this.uiStrategies = new System.Windows.Forms.ListBox();
+      this.diagramsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.uiDiagramsGenerate = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
@@ -58,7 +60,8 @@
       // menuStrip1
       // 
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.diagramsToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Size = new System.Drawing.Size(919, 24);
@@ -277,6 +280,21 @@
       this.uiStrategies.SelectedIndexChanged += new System.EventHandler(this.uiStrategies_SelectedIndexChanged);
       this.uiStrategies.DoubleClick += new System.EventHandler(this.uiStrategies_DoubleClick);
       // 
+      // diagramsToolStripMenuItem
+      // 
+      this.diagramsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiDiagramsGenerate});
+      this.diagramsToolStripMenuItem.Name = "diagramsToolStripMenuItem";
+      this.diagramsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+      this.diagramsToolStripMenuItem.Text = "&Diagrams";
+      // 
+      // uiDiagramsGenerate
+      // 
+      this.uiDiagramsGenerate.Name = "uiDiagramsGenerate";
+      this.uiDiagramsGenerate.Size = new System.Drawing.Size(152, 22);
+      this.uiDiagramsGenerate.Text = "&Generate";
+      this.uiDiagramsGenerate.Click += new System.EventHandler(this.uiDiagramsGenerate_Click);
+      // 
       // Main
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,6 +340,8 @@
     private System.Windows.Forms.Button uiRemoveStrategy;
     private System.Windows.Forms.Button uiAddStrategy;
     private System.Windows.Forms.ListBox uiStrategies;
+    private System.Windows.Forms.ToolStripMenuItem diagramsToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem uiDiagramsGenerate;
   }
 }
 
