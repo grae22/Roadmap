@@ -407,7 +407,11 @@ namespace Roadmapp.UI
       try
       {
         PopulateEntityList< StrategyEntity >( uiStrategies, (Entity)uiGoals.SelectedItem );
-        uiRealisations.Items.Clear();
+
+        if( uiGoals.SelectedItem != null )
+        {
+          uiRealisations.Items.Clear();
+        }
       }
       catch( Exception ex )
       {
