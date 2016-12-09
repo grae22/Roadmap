@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Drawing;
 using Roadmapp.Core;
 using Roadmapp.Entities;
 using Roadmapp.Diagrams;
@@ -532,7 +534,47 @@ namespace Roadmapp.UI
             @"e:\programs\graphviz\bin\",
             "DiagramTemplate.gv" );
 
-        
+        Dictionary< int, Entity > entities;
+        ActiveRoadmap.GetEntities( out entities );
+
+        foreach( Entity entity in entities.Values )
+        {
+          Color colour = Color.Gray;
+          GraphVizDiagram.Node.NodeShape shape = GraphVizDiagram.Node.NodeShape.PENTAGON;
+
+          if( entity is GoalEntity )
+          {
+            colour = Color.Green;
+            shape = GraphVizDiagram.Node.NodeShape.BOX;
+          }
+          else if( entity is StrategyEntity )
+          {
+            colour = Color.Blue;
+            shape = GraphVizDiagram.Node.NodeShape.ELLIPSE;
+          }
+          else if( entity is RealisationEntity )
+          {
+            colour = Color.Yellow;
+            shape = GraphVizDiagram.Node.NodeShape.HEXAGON;
+          }
+
+          diagram.AddNode(
+            entity.Id,
+            entity.Title,
+            50,
+            colour,
+            shape );
+
+          ReadOnlyCollection< Entity > dependencies;
+          ActiveRoadmap.GetDependencies( entity, out dependencies );
+
+          foreach( Entity dependency in dependencies )
+          {
+            diagram.AddLinkToNode( entity.Id, dependency.Id );
+          }
+        }
+
+        diagram.CreateDiagram();
       }
       catch( Exception ex )
       {
