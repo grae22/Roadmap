@@ -154,6 +154,8 @@ namespace Roadmapp.UI
           RoadmapFilename = dlg.FileName;
           SaveRoadmap( RoadmapFilename );
         }
+
+        dlg.Dispose();
       }
       catch( Exception ex )
       {
@@ -182,6 +184,8 @@ namespace Roadmapp.UI
           RoadmapFilename = dlg.FileName;
           ActiveRoadmap = Roadmap.InstantiateFromFile( RoadmapFilename );
         }
+
+        dlg.Dispose();
       }
       catch( Exception ex )
       {
@@ -237,6 +241,8 @@ namespace Roadmapp.UI
         {
           ActiveRoadmap.RemoveEntity( entity );
         }
+
+        dlg.Dispose();
       }
       catch( Exception ex )
       {
@@ -295,6 +301,8 @@ namespace Roadmapp.UI
         {
           ActiveRoadmap.RemoveEntity( entity );
         }
+
+        dlg.Dispose();
       }
       catch( Exception ex )
       {
@@ -353,6 +361,8 @@ namespace Roadmapp.UI
         {
           ActiveRoadmap.RemoveEntity( entity );
         }
+
+        dlg.Dispose();
       }
       catch( Exception ex )
       {
@@ -418,7 +428,79 @@ namespace Roadmapp.UI
         Program.HandleException( ex );
       }
     }
- 
+
+    //-------------------------------------------------------------------------
+
+    private void uiGoals_DoubleClick( object sender, EventArgs e )
+    {
+      try
+      {
+        Entity entity = (Entity)uiGoals.SelectedItem;
+
+        if( entity != null )
+        {
+          EntityDlg dlg = new EntityDlg( ActiveRoadmap, entity );
+          dlg.ShowDialog( this );
+          dlg.Dispose();
+
+          PopulateEntityLists();
+          uiGoals.SelectedItem = entity;
+        }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiStrategies_DoubleClick( object sender, EventArgs e )
+    {
+      try
+      {
+        Entity entity = (Entity)uiStrategies.SelectedItem;
+
+        if( entity != null )
+        {
+          EntityDlg dlg = new EntityDlg( ActiveRoadmap, entity );
+          dlg.ShowDialog( this );
+          dlg.Dispose();
+
+          PopulateEntityLists();
+          uiStrategies.SelectedItem = entity;
+        }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiRealisations_DoubleClick( object sender, EventArgs e )
+    {
+      try
+      {
+        Entity entity = (Entity)uiRealisations.SelectedItem;
+
+        if( entity != null )
+        {
+          EntityDlg dlg = new EntityDlg( ActiveRoadmap, entity );
+          dlg.ShowDialog( this );
+          dlg.Dispose();
+
+          PopulateEntityLists();
+          uiRealisations.SelectedItem = entity;
+        }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
     //-------------------------------------------------------------------------
   }
 }

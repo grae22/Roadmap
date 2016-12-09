@@ -136,6 +136,7 @@
       // 
       // uiDependencies
       // 
+      this.uiDependencies.CheckOnClick = true;
       this.uiDependencies.FormattingEnabled = true;
       this.uiDependencies.Location = new System.Drawing.Point(106, 202);
       this.uiDependencies.Name = "uiDependencies";

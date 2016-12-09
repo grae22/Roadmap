@@ -30,22 +30,22 @@
     {
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.uiRemoveGoal = new System.Windows.Forms.Button();
+      this.uiAddGoal = new System.Windows.Forms.Button();
       this.uiGoals = new System.Windows.Forms.ListBox();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
+      this.uiRemoveStrategy = new System.Windows.Forms.Button();
+      this.uiAddStrategy = new System.Windows.Forms.Button();
       this.uiStrategies = new System.Windows.Forms.ListBox();
       this.groupBox3 = new System.Windows.Forms.GroupBox();
+      this.uiRemoveRealisation = new System.Windows.Forms.Button();
+      this.uiAddRealisation = new System.Windows.Forms.Button();
       this.uiRealisations = new System.Windows.Forms.ListBox();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.uiFileLoad = new System.Windows.Forms.ToolStripMenuItem();
       this.uiFileSave = new System.Windows.Forms.ToolStripMenuItem();
       this.uiFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
-      this.uiAddGoal = new System.Windows.Forms.Button();
-      this.uiRemoveGoal = new System.Windows.Forms.Button();
-      this.uiRemoveStrategy = new System.Windows.Forms.Button();
-      this.uiAddStrategy = new System.Windows.Forms.Button();
-      this.uiRemoveRealisation = new System.Windows.Forms.Button();
-      this.uiAddRealisation = new System.Windows.Forms.Button();
       this.flowLayoutPanel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -78,6 +78,28 @@
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Goals:";
       // 
+      // uiRemoveGoal
+      // 
+      this.uiRemoveGoal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.uiRemoveGoal.Location = new System.Drawing.Point(245, 17);
+      this.uiRemoveGoal.Name = "uiRemoveGoal";
+      this.uiRemoveGoal.Size = new System.Drawing.Size(34, 20);
+      this.uiRemoveGoal.TabIndex = 4;
+      this.uiRemoveGoal.Text = "-";
+      this.uiRemoveGoal.UseVisualStyleBackColor = true;
+      this.uiRemoveGoal.Click += new System.EventHandler(this.uiRemoveGoal_Click);
+      // 
+      // uiAddGoal
+      // 
+      this.uiAddGoal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.uiAddGoal.Location = new System.Drawing.Point(205, 17);
+      this.uiAddGoal.Name = "uiAddGoal";
+      this.uiAddGoal.Size = new System.Drawing.Size(34, 20);
+      this.uiAddGoal.TabIndex = 3;
+      this.uiAddGoal.Text = "+";
+      this.uiAddGoal.UseVisualStyleBackColor = true;
+      this.uiAddGoal.Click += new System.EventHandler(this.uiAddGoal_Click);
+      // 
       // uiGoals
       // 
       this.uiGoals.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -88,6 +110,7 @@
       this.uiGoals.Size = new System.Drawing.Size(272, 399);
       this.uiGoals.TabIndex = 0;
       this.uiGoals.SelectedIndexChanged += new System.EventHandler(this.uiGoals_SelectedIndexChanged);
+      this.uiGoals.DoubleClick += new System.EventHandler(this.uiGoals_DoubleClick);
       // 
       // groupBox2
       // 
@@ -102,6 +125,28 @@
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Strategies:";
       // 
+      // uiRemoveStrategy
+      // 
+      this.uiRemoveStrategy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.uiRemoveStrategy.Location = new System.Drawing.Point(245, 17);
+      this.uiRemoveStrategy.Name = "uiRemoveStrategy";
+      this.uiRemoveStrategy.Size = new System.Drawing.Size(34, 20);
+      this.uiRemoveStrategy.TabIndex = 6;
+      this.uiRemoveStrategy.Text = "-";
+      this.uiRemoveStrategy.UseVisualStyleBackColor = true;
+      this.uiRemoveStrategy.Click += new System.EventHandler(this.uiRemoveStrategy_Click);
+      // 
+      // uiAddStrategy
+      // 
+      this.uiAddStrategy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.uiAddStrategy.Location = new System.Drawing.Point(205, 17);
+      this.uiAddStrategy.Name = "uiAddStrategy";
+      this.uiAddStrategy.Size = new System.Drawing.Size(34, 20);
+      this.uiAddStrategy.TabIndex = 5;
+      this.uiAddStrategy.Text = "+";
+      this.uiAddStrategy.UseVisualStyleBackColor = true;
+      this.uiAddStrategy.Click += new System.EventHandler(this.uiAddStrategy_Click);
+      // 
       // uiStrategies
       // 
       this.uiStrategies.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -112,6 +157,7 @@
       this.uiStrategies.Size = new System.Drawing.Size(272, 398);
       this.uiStrategies.TabIndex = 1;
       this.uiStrategies.SelectedIndexChanged += new System.EventHandler(this.uiStrategies_SelectedIndexChanged);
+      this.uiStrategies.DoubleClick += new System.EventHandler(this.uiStrategies_DoubleClick);
       // 
       // groupBox3
       // 
@@ -126,6 +172,28 @@
       this.groupBox3.TabStop = false;
       this.groupBox3.Text = "Realisations:";
       // 
+      // uiRemoveRealisation
+      // 
+      this.uiRemoveRealisation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.uiRemoveRealisation.Location = new System.Drawing.Point(245, 17);
+      this.uiRemoveRealisation.Name = "uiRemoveRealisation";
+      this.uiRemoveRealisation.Size = new System.Drawing.Size(34, 20);
+      this.uiRemoveRealisation.TabIndex = 6;
+      this.uiRemoveRealisation.Text = "-";
+      this.uiRemoveRealisation.UseVisualStyleBackColor = true;
+      this.uiRemoveRealisation.Click += new System.EventHandler(this.uiRemoveRealisation_Click);
+      // 
+      // uiAddRealisation
+      // 
+      this.uiAddRealisation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.uiAddRealisation.Location = new System.Drawing.Point(205, 17);
+      this.uiAddRealisation.Name = "uiAddRealisation";
+      this.uiAddRealisation.Size = new System.Drawing.Size(34, 20);
+      this.uiAddRealisation.TabIndex = 5;
+      this.uiAddRealisation.Text = "+";
+      this.uiAddRealisation.UseVisualStyleBackColor = true;
+      this.uiAddRealisation.Click += new System.EventHandler(this.uiAddRealisation_Click);
+      // 
       // uiRealisations
       // 
       this.uiRealisations.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -135,6 +203,7 @@
       this.uiRealisations.Name = "uiRealisations";
       this.uiRealisations.Size = new System.Drawing.Size(272, 398);
       this.uiRealisations.TabIndex = 1;
+      this.uiRealisations.DoubleClick += new System.EventHandler(this.uiRealisations_DoubleClick);
       // 
       // menuStrip1
       // 
@@ -176,72 +245,6 @@
       this.uiFileSaveAs.Size = new System.Drawing.Size(123, 22);
       this.uiFileSaveAs.Text = "Save &As...";
       this.uiFileSaveAs.Click += new System.EventHandler(this.uiFileSaveAs_Click);
-      // 
-      // uiAddGoal
-      // 
-      this.uiAddGoal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.uiAddGoal.Location = new System.Drawing.Point(205, 17);
-      this.uiAddGoal.Name = "uiAddGoal";
-      this.uiAddGoal.Size = new System.Drawing.Size(34, 20);
-      this.uiAddGoal.TabIndex = 3;
-      this.uiAddGoal.Text = "+";
-      this.uiAddGoal.UseVisualStyleBackColor = true;
-      this.uiAddGoal.Click += new System.EventHandler(this.uiAddGoal_Click);
-      // 
-      // uiRemoveGoal
-      // 
-      this.uiRemoveGoal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.uiRemoveGoal.Location = new System.Drawing.Point(245, 17);
-      this.uiRemoveGoal.Name = "uiRemoveGoal";
-      this.uiRemoveGoal.Size = new System.Drawing.Size(34, 20);
-      this.uiRemoveGoal.TabIndex = 4;
-      this.uiRemoveGoal.Text = "-";
-      this.uiRemoveGoal.UseVisualStyleBackColor = true;
-      this.uiRemoveGoal.Click += new System.EventHandler(this.uiRemoveGoal_Click);
-      // 
-      // uiRemoveStrategy
-      // 
-      this.uiRemoveStrategy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.uiRemoveStrategy.Location = new System.Drawing.Point(245, 17);
-      this.uiRemoveStrategy.Name = "uiRemoveStrategy";
-      this.uiRemoveStrategy.Size = new System.Drawing.Size(34, 20);
-      this.uiRemoveStrategy.TabIndex = 6;
-      this.uiRemoveStrategy.Text = "-";
-      this.uiRemoveStrategy.UseVisualStyleBackColor = true;
-      this.uiRemoveStrategy.Click += new System.EventHandler(this.uiRemoveStrategy_Click);
-      // 
-      // uiAddStrategy
-      // 
-      this.uiAddStrategy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.uiAddStrategy.Location = new System.Drawing.Point(205, 17);
-      this.uiAddStrategy.Name = "uiAddStrategy";
-      this.uiAddStrategy.Size = new System.Drawing.Size(34, 20);
-      this.uiAddStrategy.TabIndex = 5;
-      this.uiAddStrategy.Text = "+";
-      this.uiAddStrategy.UseVisualStyleBackColor = true;
-      this.uiAddStrategy.Click += new System.EventHandler(this.uiAddStrategy_Click);
-      // 
-      // uiRemoveRealisation
-      // 
-      this.uiRemoveRealisation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.uiRemoveRealisation.Location = new System.Drawing.Point(245, 17);
-      this.uiRemoveRealisation.Name = "uiRemoveRealisation";
-      this.uiRemoveRealisation.Size = new System.Drawing.Size(34, 20);
-      this.uiRemoveRealisation.TabIndex = 6;
-      this.uiRemoveRealisation.Text = "-";
-      this.uiRemoveRealisation.UseVisualStyleBackColor = true;
-      this.uiRemoveRealisation.Click += new System.EventHandler(this.uiRemoveRealisation_Click);
-      // 
-      // uiAddRealisation
-      // 
-      this.uiAddRealisation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.uiAddRealisation.Location = new System.Drawing.Point(205, 17);
-      this.uiAddRealisation.Name = "uiAddRealisation";
-      this.uiAddRealisation.Size = new System.Drawing.Size(34, 20);
-      this.uiAddRealisation.TabIndex = 5;
-      this.uiAddRealisation.Text = "+";
-      this.uiAddRealisation.UseVisualStyleBackColor = true;
-      this.uiAddRealisation.Click += new System.EventHandler(this.uiAddRealisation_Click);
       // 
       // Main
       // 
