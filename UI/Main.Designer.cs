@@ -323,6 +323,7 @@
       this.Name = "Main";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Roadmap";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
       this.Load += new System.EventHandler(this.Main_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();

@@ -44,7 +44,7 @@ namespace Roadmapp.UI
         if( RoadmapFilename != null )
         {
           LoadRoadmap( RoadmapFilename );
-          Text = "Roadmap [" + RoadmapFilename + "]";
+          UpdateAppTitle();
         }
 
         // Create a new roadmap if we don't have one by now.
@@ -55,6 +55,61 @@ namespace Roadmapp.UI
 
         // Update the UI.
         PopulateEntityLists();
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void Main_FormClosing( object sender, FormClosingEventArgs e )
+    {
+      try
+      {
+        if( RoadmapFilename != null )
+        {
+          DialogResult result =
+            MessageBox.Show(
+                  "Save before closing?",
+                  "Save?",
+                  MessageBoxButtons.YesNoCancel,
+                  MessageBoxIcon.Question );
+
+          switch( result )
+          {
+            case DialogResult.Yes:
+              uiFileSave_Click( null, null );
+              break;
+
+            case DialogResult.No:
+              break;
+
+            case DialogResult.Cancel:
+              e.Cancel = true;
+              break;
+          }
+        }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void UpdateAppTitle()
+    {
+      try
+      {
+        Text = "Roadmap";
+
+        if( RoadmapFilename != null )
+        {
+          Text += " [" + RoadmapFilename + "]";
+        }
       }
       catch( Exception ex )
       {
@@ -85,6 +140,8 @@ namespace Roadmapp.UI
       try
       {
         ActiveRoadmap = Roadmap.InstantiateFromFile( filename );
+        UpdateAppTitle();
+        PopulateEntityLists();
       }
       catch( Exception ex )
       {
@@ -155,6 +212,7 @@ namespace Roadmapp.UI
         if( dlg.ShowDialog() == DialogResult.OK )
         {
           RoadmapFilename = dlg.FileName;
+          UpdateAppTitle();
           SaveRoadmap( RoadmapFilename );
         }
 
@@ -185,7 +243,7 @@ namespace Roadmapp.UI
         if( dlg.ShowDialog() == DialogResult.OK )
         {
           RoadmapFilename = dlg.FileName;
-          ActiveRoadmap = Roadmap.InstantiateFromFile( RoadmapFilename );
+          LoadRoadmap( RoadmapFilename );
         }
 
         dlg.Dispose();
@@ -594,7 +652,9 @@ namespace Roadmapp.UI
               MessageBoxButtons.YesNo,
               MessageBoxIcon.Warning ) == DialogResult.Yes )
         {
+          RoadmapFilename = null;
           ActiveRoadmap = new Roadmap();
+          UpdateAppTitle();
           PopulateEntityLists();
         }
       }
