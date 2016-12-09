@@ -50,6 +50,8 @@
       this.uiStrategies = new System.Windows.Forms.ListBox();
       this.diagramsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.uiDiagramsGenerate = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+      this.uiFileNew = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
@@ -71,6 +73,8 @@
       // fileToolStripMenuItem
       // 
       this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiFileNew,
+            this.toolStripSeparator2,
             this.uiFileLoad,
             this.toolStripSeparator1,
             this.uiFileSave,
@@ -295,6 +299,18 @@
       this.uiDiagramsGenerate.Text = "&Generate";
       this.uiDiagramsGenerate.Click += new System.EventHandler(this.uiDiagramsGenerate_Click);
       // 
+      // toolStripSeparator2
+      // 
+      this.toolStripSeparator2.Name = "toolStripSeparator2";
+      this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+      // 
+      // uiFileNew
+      // 
+      this.uiFileNew.Name = "uiFileNew";
+      this.uiFileNew.Size = new System.Drawing.Size(152, 22);
+      this.uiFileNew.Text = "&New";
+      this.uiFileNew.Click += new System.EventHandler(this.uiFileNew_Click);
+      // 
       // Main
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,6 +358,8 @@
     private System.Windows.Forms.ListBox uiStrategies;
     private System.Windows.Forms.ToolStripMenuItem diagramsToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem uiDiagramsGenerate;
+    private System.Windows.Forms.ToolStripMenuItem uiFileNew;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
   }
 }
 

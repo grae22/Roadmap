@@ -583,5 +583,27 @@ namespace Roadmapp.UI
     }
 
     //-------------------------------------------------------------------------
+
+    private void uiFileNew_Click( object sender, EventArgs e )
+    {
+      try
+      {
+        if( MessageBox.Show(
+              "Discard any changes to current Roadmap?",
+              "New Roadmap",
+              MessageBoxButtons.YesNo,
+              MessageBoxIcon.Warning ) == DialogResult.Yes )
+        {
+          ActiveRoadmap = new Roadmap();
+          PopulateEntityLists();
+        }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
   }
 }
