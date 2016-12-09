@@ -202,7 +202,7 @@ namespace Roadmapp.UI
       {
         list.Items.Clear();
 
-        ReadOnlyDictionary< string, T > entities;
+        ReadOnlyDictionary< int, T > entities;
         ActiveRoadmap.GetEntities( out entities );
 
         foreach( T entity in entities.Values )

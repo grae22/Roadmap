@@ -23,9 +23,10 @@
 
     //-------------------------------------------------------------------------
 
-    public RealisationEntity( EntityRelationshipManager relationshipManager )
+    public RealisationEntity( int id,
+                              EntityRelationshipManager relationshipManager )
     :
-      base( relationshipManager )
+      base( id, relationshipManager )
     {
     }
 

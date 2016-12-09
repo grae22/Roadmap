@@ -39,14 +39,14 @@ namespace Roadmapp_Test.Core
       Assert.IsNotNull( mock2_2, "Failed to add entity." );
 
       // Check they're there.
-      ReadOnlyDictionary< string, EntityMocks.EntityMock1 > mock1Entities;
+      ReadOnlyDictionary< int, EntityMocks.EntityMock1 > mock1Entities;
       TestObject.GetEntities< EntityMocks.EntityMock1 >( out mock1Entities );
-      Assert.IsTrue( mock1Entities.ContainsKey( mock1.Title ), "Failed to retrieve entity." );
+      Assert.IsTrue( mock1Entities.ContainsKey( mock1.Id ), "Failed to retrieve entity." );
 
-      ReadOnlyDictionary< string, EntityMocks.EntityMock2 > mock2Entities;
+      ReadOnlyDictionary< int, EntityMocks.EntityMock2 > mock2Entities;
       TestObject.GetEntities< EntityMocks.EntityMock2 >( out mock2Entities );
-      Assert.IsTrue( mock2Entities.ContainsKey( mock2_1.Title ), "Failed to retrieve entity." );
-      Assert.IsTrue( mock2Entities.ContainsKey( mock2_2.Title ), "Failed to retrieve entity." );
+      Assert.IsTrue( mock2Entities.ContainsKey( mock2_1.Id ), "Failed to retrieve entity." );
+      Assert.IsTrue( mock2Entities.ContainsKey( mock2_2.Id ), "Failed to retrieve entity." );
     }
 
     //-------------------------------------------------------------------------
@@ -62,14 +62,14 @@ namespace Roadmapp_Test.Core
       TestObject.RemoveEntity( mock1 );
       
       // Check it's gone.
-      ReadOnlyDictionary< string, EntityMocks.EntityMock1 > mock1Entities;
+      ReadOnlyDictionary< int, EntityMocks.EntityMock1 > mock1Entities;
       TestObject.GetEntities< EntityMocks.EntityMock1 >( out mock1Entities );
-      Assert.IsFalse( mock1Entities.ContainsKey( mock1.Title ), "Entity is still present." );
+      Assert.IsFalse( mock1Entities.ContainsKey( mock1.Id ), "Entity is still present." );
       
       // Check the other is still there.
-      ReadOnlyDictionary< string, EntityMocks.EntityMock2 > mock2Entities;
+      ReadOnlyDictionary< int, EntityMocks.EntityMock2 > mock2Entities;
       TestObject.GetEntities< EntityMocks.EntityMock2 >( out mock2Entities );
-      Assert.IsTrue( mock2Entities.ContainsKey( mock2.Title ), "Failed to retrieve entity." );
+      Assert.IsTrue( mock2Entities.ContainsKey( mock2.Id ), "Failed to retrieve entity." );
     }
     
     //-------------------------------------------------------------------------
@@ -101,9 +101,9 @@ namespace Roadmapp_Test.Core
       newRoadmap.InitialiseFromXml( xml );
 
       // Check the entities are present.
-      Entity newMock1 = newRoadmap.GetEntity( mock1.Title );
-      Entity newMock2_1 = newRoadmap.GetEntity( mock2_1.Title );
-      Entity newMock2_2 = newRoadmap.GetEntity( mock2_2.Title );
+      Entity newMock1 = newRoadmap.GetEntity( mock1.Id );
+      Entity newMock2_1 = newRoadmap.GetEntity( mock2_1.Id );
+      Entity newMock2_2 = newRoadmap.GetEntity( mock2_2.Id );
 
       Assert.IsNotNull( newMock1.Title, "Entity not found." );
       Assert.IsNotNull( newMock2_1.Title, "Entity not found." );
@@ -143,9 +143,9 @@ namespace Roadmapp_Test.Core
       Roadmap newRoadmap = Roadmap.InstantiateFromFile( "XmlFilePersistence.roadmap" );
 
       // Check the entities are present.
-      Entity newMock1 = newRoadmap.GetEntity( mock1.Title );
-      Entity newMock2_1 = newRoadmap.GetEntity( mock2_1.Title );
-      Entity newMock2_2 = newRoadmap.GetEntity( mock2_2.Title );
+      Entity newMock1 = newRoadmap.GetEntity( mock1.Id );
+      Entity newMock2_1 = newRoadmap.GetEntity( mock2_1.Id );
+      Entity newMock2_2 = newRoadmap.GetEntity( mock2_2.Id );
 
       Assert.IsNotNull( newMock1.Title, "Entity not found." );
       Assert.IsNotNull( newMock2_1.Title, "Entity not found." );

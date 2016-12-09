@@ -32,6 +32,7 @@ namespace Roadmapp.Entities
     abstract public string TypeName { get; }
 
     // General.
+    public int Id { get; private set; }
     public string Title { get; set; }
     public string Description { get; set; }
 
@@ -40,8 +41,10 @@ namespace Roadmapp.Entities
 
     //-------------------------------------------------------------------------
 
-    public Entity( EntityRelationshipManager relationshipManager )
+    public Entity( int id,
+                   EntityRelationshipManager relationshipManager )
     {
+      Id = id;
       Relationships = relationshipManager;
     }
 
@@ -68,8 +71,13 @@ namespace Roadmapp.Entities
       attrib.Value = GetType().AssemblyQualifiedName;
       xml.Attributes.Append( attrib );
 
+      // Id.
+      XmlElement element = xml.OwnerDocument.CreateElement( "Id" );
+      element.InnerText = Id.ToString();
+      xml.AppendChild( element );
+
       // Title.
-      XmlElement element = xml.OwnerDocument.CreateElement( "Title" );
+      element = xml.OwnerDocument.CreateElement( "Title" );
       element.InnerText = Title;
       xml.AppendChild( element );
 
@@ -84,6 +92,14 @@ namespace Roadmapp.Entities
     // <exception cref="System.ArgumentException">Thrown if expected xml elements are missing.</exception>
     virtual protected void InitialiseFromXml( XmlElement xml )
     {
+      // Id.
+      if( xml.SelectSingleNode( "Id" ) as XmlElement == null )
+      {
+        throw new ArgumentException( "'Id' element not found." );
+      }
+
+      Id = int.Parse( ( xml[ "Id" ] as XmlElement ).InnerText );
+
       // Title.
       if( xml.SelectSingleNode( "Title" ) as XmlElement == null )
       {

@@ -23,9 +23,10 @@
 
     //-------------------------------------------------------------------------
 
-    public GoalEntity( EntityRelationshipManager relationshipManager )
+    public GoalEntity( int id,
+                       EntityRelationshipManager relationshipManager )
     :
-      base( relationshipManager )
+      base( id, relationshipManager )
     {
     }
 

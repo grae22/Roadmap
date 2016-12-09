@@ -24,9 +24,10 @@ namespace Roadmapp.Entities
 
     //-------------------------------------------------------------------------
 
-    public ActionEntity( EntityRelationshipManager relationshipManager )
+    public ActionEntity( int id,
+                         EntityRelationshipManager relationshipManager )
     :
-      base( relationshipManager )
+      base( id, relationshipManager )
     {
     }
 

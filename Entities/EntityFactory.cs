@@ -7,6 +7,7 @@ namespace Roadmapp.Entities
     //-------------------------------------------------------------------------
 
     private EntityRelationshipManager EntityRelationships { get; set; }
+    private int NextEntityId { get; set; } = 0;
 
     //-------------------------------------------------------------------------
 
@@ -22,7 +23,7 @@ namespace Roadmapp.Entities
       return
         (Entity)Activator.CreateInstance(
           typeof( T ),
-          new object[] { EntityRelationships } );
+          new object[] { NextEntityId++, EntityRelationships } );
     }
 
     //-------------------------------------------------------------------------
@@ -34,7 +35,7 @@ namespace Roadmapp.Entities
         return
           (Entity)Activator.CreateInstance(
             Type.GetType( typeName ),
-            new object[] { EntityRelationships } );
+            new object[] { NextEntityId++, EntityRelationships } );
       }
       catch( Exception )
       {
@@ -46,28 +47,28 @@ namespace Roadmapp.Entities
 
     public GoalEntity GetGoalEntity()
     {
-      return new GoalEntity( EntityRelationships );
+      return new GoalEntity( NextEntityId++, EntityRelationships );
     }
 
     //-------------------------------------------------------------------------
 
     public StrategyEntity GetStrategyEntity()
     {
-      return new StrategyEntity( EntityRelationships );
+      return new StrategyEntity( NextEntityId++, EntityRelationships );
     }
 
     //-------------------------------------------------------------------------
 
     public RealisationEntity GetRealisationEntity()
     {
-      return new RealisationEntity( EntityRelationships );
+      return new RealisationEntity( NextEntityId++, EntityRelationships );
     }
 
     //-------------------------------------------------------------------------
 
     public ActionEntity GetActionEntity()
     {
-      return new ActionEntity( EntityRelationships );
+      return new ActionEntity( NextEntityId++, EntityRelationships );
     }
 
     //-------------------------------------------------------------------------

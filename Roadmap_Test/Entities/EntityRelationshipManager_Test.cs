@@ -48,8 +48,8 @@ namespace Roadmapp_Test.Entities
         typeof( EntityMocks.EntityMock1 ),
         typeof( EntityMocks.EntityMock2 ) );
 
-      EntityMocks.EntityMock1 mock1 = new EntityMocks.EntityMock1( TestObject );
-      EntityMocks.EntityMock2 mock2 = new EntityMocks.EntityMock2( TestObject );
+      EntityMocks.EntityMock1 mock1 = new EntityMocks.EntityMock1( 0, TestObject );
+      EntityMocks.EntityMock2 mock2 = new EntityMocks.EntityMock2( 1, TestObject );
 
       bool result = TestObject.AddDependency( mock1, mock2 );
       Assert.IsTrue( result, "Failed to add dependency." );
@@ -79,9 +79,9 @@ namespace Roadmapp_Test.Entities
         typeof( EntityMocks.EntityMock2 ) );
 
       // Set up entities.
-      EntityMocks.EntityMock1 mock1 = new EntityMocks.EntityMock1( TestObject );
-      EntityMocks.EntityMock2 mock2_1 = new EntityMocks.EntityMock2( TestObject );
-      EntityMocks.EntityMock2 mock2_2 = new EntityMocks.EntityMock2( TestObject );
+      EntityMocks.EntityMock1 mock1 = new EntityMocks.EntityMock1( 0, TestObject );
+      EntityMocks.EntityMock2 mock2_1 = new EntityMocks.EntityMock2( 1, TestObject );
+      EntityMocks.EntityMock2 mock2_2 = new EntityMocks.EntityMock2( 2, TestObject );
 
       // Add some dependencies.
       TestObject.AddDependency( mock1, mock2_1 );

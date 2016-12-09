@@ -66,7 +66,7 @@ namespace Roadmapp.UI
         {
           if( t.IsSubclassOf( typeof( Entity ) ) )
           {
-            Entity e = (Entity)Activator.CreateInstance( t, new object[] { null } );
+            Entity e = (Entity)Activator.CreateInstance( t, new object[] { 0, null } );
             EntityTypes.Add( e.TypeName, t );
           }
         }
@@ -117,7 +117,7 @@ namespace Roadmapp.UI
           {
             // Get all the entities of the type (which we now know
             // the entity is allowed to depend on) and add to the UI list.
-            ReadOnlyDictionary< string, Entity > entities;
+            ReadOnlyDictionary< int, Entity > entities;
             Roadmap.GetEntities( type, out entities );
 
             foreach( Entity e in entities.Values )

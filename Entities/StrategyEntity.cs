@@ -23,9 +23,10 @@
 
     //-------------------------------------------------------------------------
 
-    public StrategyEntity( EntityRelationshipManager relationshipManager )
+    public StrategyEntity( int id,
+                           EntityRelationshipManager relationshipManager )
     :
-      base( relationshipManager )
+      base( id, relationshipManager )
     {
     }
 

@@ -40,9 +40,9 @@ namespace Roadmapp.Core
     private EntityRelationshipManager EntityRelationships { get; set; }
     private EntityFactory EntityFactory { get; set; }
 
-    // Entities organised by type and name.
-    private Dictionary< Type, Dictionary< string, Entity > > Entities { get; set; }
-      = new Dictionary< Type, Dictionary< string, Entity > >();
+    // Entities organised by type and id.
+    private Dictionary< Type, Dictionary< int, Entity > > Entities { get; set; }
+      = new Dictionary< Type, Dictionary< int, Entity > >();
 
     //-------------------------------------------------------------------------
 
@@ -121,56 +121,56 @@ namespace Roadmapp.Core
       {
         Entities.Add(
           entity.GetType(),
-          new Dictionary< string, Entity >() );
+          new Dictionary< int, Entity >() );
       }
 
-      Entities[ entity.GetType() ].Add( entity.Title, entity );
+      Entities[ entity.GetType() ].Add( entity.Id, entity );
     }
 
     //-------------------------------------------------------------------------
 
-    public void GetEntities< T >( out ReadOnlyDictionary< string, T > entities ) where T : Entity
+    public void GetEntities< T >( out ReadOnlyDictionary< int, T > entities ) where T : Entity
     {
-      Dictionary< string, T > tmp = new Dictionary< string, T >();
+      Dictionary< int, T > tmp = new Dictionary< int, T >();
 
       if( Entities.ContainsKey( typeof( T ) ) )
       {
-        foreach( KeyValuePair< string, Entity > pair in Entities[ typeof( T ) ] )
+        foreach( KeyValuePair< int, Entity > pair in Entities[ typeof( T ) ] )
         {
           tmp.Add( pair.Key, (T)pair.Value );
         }
       }
 
-      entities = new ReadOnlyDictionary< string, T >( tmp );
+      entities = new ReadOnlyDictionary< int, T >( tmp );
     }
 
     //-------------------------------------------------------------------------
 
     public void GetEntities( Type type,
-                             out ReadOnlyDictionary< string, Entity > entities )
+                             out ReadOnlyDictionary< int, Entity > entities )
     {
-      Dictionary< string, Entity > tmp = new Dictionary< string, Entity >();
+      Dictionary< int, Entity > tmp = new Dictionary< int, Entity >();
 
       if( Entities.ContainsKey( type ) )
       {
-        foreach( KeyValuePair< string, Entity > pair in Entities[ type ] )
+        foreach( KeyValuePair< int, Entity > pair in Entities[ type ] )
         {
           tmp.Add( pair.Key, pair.Value );
         }
       }
 
-      entities = new ReadOnlyDictionary< string, Entity >( tmp );
+      entities = new ReadOnlyDictionary< int, Entity >( tmp );
     }
 
     //-------------------------------------------------------------------------
 
-    public Entity GetEntity( string title )
+    public Entity GetEntity( int id )
     {
-      foreach( Dictionary< string, Entity > pair in Entities.Values )
+      foreach( Dictionary< int, Entity > pair in Entities.Values )
       {
-        if( pair.ContainsKey( title ) )
+        if( pair.ContainsKey( id ) )
         {
-          return pair[ title ];
+          return pair[ id ];
         }
       }
 
@@ -193,7 +193,7 @@ namespace Roadmapp.Core
 
       if( Entities.ContainsKey( type ) )
       {
-        Entities[ type ].Remove( entity.Title );
+        Entities[ type ].Remove( entity.Id );
       }
     }
 
@@ -201,11 +201,14 @@ namespace Roadmapp.Core
 
     public bool GetIsTitleUnique( string name )
     {
-      foreach( Dictionary< string, Entity > entities in Entities.Values )
+      foreach( Dictionary< int, Entity > entities in Entities.Values )
       {
-        if( entities.ContainsKey( name ) )
+        foreach( Entity e in entities.Values )
         {
-          return false;
+          if( name == e.Title )
+          {
+            return false;
+          }
         }
       }
 
@@ -224,7 +227,7 @@ namespace Roadmapp.Core
       xml.AppendChild( dependenciesXml );
 
       // Iterate through each entity type.
-      foreach( Dictionary< string, Entity > pair in Entities.Values )
+      foreach( Dictionary< int, Entity > pair in Entities.Values )
       {
         // Iterate through each entity for the current entity type.
         foreach( Entity entity in pair.Values )
@@ -240,9 +243,9 @@ namespace Roadmapp.Core
           XmlElement entityDependencyXml = xml.OwnerDocument.CreateElement( "Entity" );
           dependenciesXml.AppendChild( entityDependencyXml );
 
-          XmlAttribute attrib = xml.OwnerDocument.CreateAttribute( "title" );
+          XmlAttribute attrib = xml.OwnerDocument.CreateAttribute( "id" );
           entityDependencyXml.Attributes.Append( attrib );
-          attrib.Value = entity.Title;
+          attrib.Value = entity.Id.ToString();
 
           // Entity's dependencies.
           ReadOnlyCollection< Entity > dependencies;
@@ -253,9 +256,9 @@ namespace Roadmapp.Core
             XmlElement dependencyXml = xml.OwnerDocument.CreateElement( "Dependency" );
             entityDependencyXml.AppendChild( dependencyXml );
             
-            attrib = xml.OwnerDocument.CreateAttribute( "title" );
+            attrib = xml.OwnerDocument.CreateAttribute( "id" );
             dependencyXml.Attributes.Append( attrib );
-            attrib.Value = dependency.Title;
+            attrib.Value = dependency.Id.ToString();
           }
         }
       }
@@ -287,39 +290,39 @@ namespace Roadmapp.Core
       foreach( XmlElement entityXml in xml[ "EntityDependencies" ] )
       {
         // Dependant entity.
-        if( entityXml.HasAttribute( "title" ) == false )
+        if( entityXml.HasAttribute( "id" ) == false )
         {
-          throw new ArgumentException( "Dependant entity 'title' not found." );
+          throw new ArgumentException( "Dependant entity 'id' not found." );
         }
 
-        string dependantTitle = entityXml.Attributes[ "title" ].Value;
-        Entity dependant = GetEntity( dependantTitle );
+        int dependantId = int.Parse( entityXml.Attributes[ "id" ].Value );
+        Entity dependant = GetEntity( dependantId );
 
         if( dependant == null )
         {
           throw new ArgumentException(
-            string.Format( "Dependant Entity '{0}' not found.", dependantTitle ) );
+            string.Format( "Dependant Entity '{0}' not found.", dependantId ) );
         }
 
         // Dependency.
         foreach( XmlElement dependencyXml in entityXml )
         {
-          if( dependencyXml.HasAttribute( "title" ) == false )
+          if( dependencyXml.HasAttribute( "id" ) == false )
           {
             throw new ArgumentException(
-              string.Format( "Dependant Entity '{0}' 'Dependency' element missing 'title' attribute.",
-                             dependantTitle ) );
+              string.Format( "Dependant Entity '{0}' 'Dependency' element missing 'id' attribute.",
+                             dependantId ) );
           }
 
-          string dependencyTitle = dependencyXml.Attributes[ "title" ].Value;
-          Entity dependency = GetEntity( dependencyTitle );
+          int dependencyId = int.Parse( dependencyXml.Attributes[ "id" ].Value );
+          Entity dependency = GetEntity( dependencyId );
 
           if( dependency == null )
           {
             throw new ArgumentException(
               string.Format( "Dependant Entity '{0}' dependency '{1}' not found.",
-                             dependantTitle,
-                             dependencyTitle ) );
+                             dependantId,
+                             dependencyId ) );
           }
 
           // Create the dependency.

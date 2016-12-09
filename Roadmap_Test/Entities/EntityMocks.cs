@@ -16,9 +16,9 @@ namespace Roadmapp_Test.Entities
         }
       }
 
-      public EntityMock1( EntityRelationshipManager relationshipManager )
+      public EntityMock1( int id, EntityRelationshipManager relationshipManager )
       :
-        base( relationshipManager )
+        base( id, relationshipManager )
       {
 
       }
@@ -36,9 +36,9 @@ namespace Roadmapp_Test.Entities
         }
       }
 
-      public EntityMock2( EntityRelationshipManager relationshipManager )
+      public EntityMock2( int id, EntityRelationshipManager relationshipManager )
       :
-        base( relationshipManager )
+        base( id, relationshipManager )
       {
 
       }
