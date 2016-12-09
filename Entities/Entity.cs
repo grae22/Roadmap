@@ -105,7 +105,7 @@ namespace Roadmapp.Entities
 
     public override string ToString()
     {
-      return Title;
+      return string.Format( "({0}) {1}", TypeName[ 0 ], Title );
     }
 
     //-------------------------------------------------------------------------

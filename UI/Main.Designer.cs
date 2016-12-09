@@ -46,6 +46,7 @@
       this.uiFileLoad = new System.Windows.Forms.ToolStripMenuItem();
       this.uiFileSave = new System.Windows.Forms.ToolStripMenuItem();
       this.uiFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+      this.uiGoalsClearSelection = new System.Windows.Forms.Button();
       this.flowLayoutPanel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -67,6 +68,7 @@
       // 
       // groupBox1
       // 
+      this.groupBox1.Controls.Add(this.uiGoalsClearSelection);
       this.groupBox1.Controls.Add(this.uiRemoveGoal);
       this.groupBox1.Controls.Add(this.uiAddGoal);
       this.groupBox1.Controls.Add(this.uiGoals);
@@ -104,6 +106,7 @@
       // 
       this.uiGoals.Dock = System.Windows.Forms.DockStyle.Fill;
       this.uiGoals.FormattingEnabled = true;
+      this.uiGoals.HorizontalScrollbar = true;
       this.uiGoals.IntegralHeight = false;
       this.uiGoals.Location = new System.Drawing.Point(10, 43);
       this.uiGoals.Name = "uiGoals";
@@ -151,6 +154,7 @@
       // 
       this.uiStrategies.Dock = System.Windows.Forms.DockStyle.Fill;
       this.uiStrategies.FormattingEnabled = true;
+      this.uiStrategies.HorizontalScrollbar = true;
       this.uiStrategies.IntegralHeight = false;
       this.uiStrategies.Location = new System.Drawing.Point(10, 43);
       this.uiStrategies.Name = "uiStrategies";
@@ -198,6 +202,7 @@
       // 
       this.uiRealisations.Dock = System.Windows.Forms.DockStyle.Fill;
       this.uiRealisations.FormattingEnabled = true;
+      this.uiRealisations.HorizontalScrollbar = true;
       this.uiRealisations.IntegralHeight = false;
       this.uiRealisations.Location = new System.Drawing.Point(10, 43);
       this.uiRealisations.Name = "uiRealisations";
@@ -246,6 +251,17 @@
       this.uiFileSaveAs.Text = "Save &As...";
       this.uiFileSaveAs.Click += new System.EventHandler(this.uiFileSaveAs_Click);
       // 
+      // uiGoalsClearSelection
+      // 
+      this.uiGoalsClearSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.uiGoalsClearSelection.Location = new System.Drawing.Point(10, 17);
+      this.uiGoalsClearSelection.Name = "uiGoalsClearSelection";
+      this.uiGoalsClearSelection.Size = new System.Drawing.Size(34, 20);
+      this.uiGoalsClearSelection.TabIndex = 5;
+      this.uiGoalsClearSelection.Text = "x";
+      this.uiGoalsClearSelection.UseVisualStyleBackColor = true;
+      this.uiGoalsClearSelection.Click += new System.EventHandler(this.uiGoalsClearSelection_Click);
+      // 
       // Main
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,6 +305,7 @@
     private System.Windows.Forms.Button uiAddStrategy;
     private System.Windows.Forms.Button uiRemoveRealisation;
     private System.Windows.Forms.Button uiAddRealisation;
+    private System.Windows.Forms.Button uiGoalsClearSelection;
   }
 }
 

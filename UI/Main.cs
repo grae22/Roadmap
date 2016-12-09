@@ -506,5 +506,20 @@ namespace Roadmapp.UI
     }
 
     //-------------------------------------------------------------------------
+
+    private void uiGoalsClearSelection_Click( object sender, EventArgs e )
+    {
+      try
+      {
+        uiGoals.SelectedItem = null;
+        PopulateEntityLists();
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
   }
 }
