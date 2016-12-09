@@ -37,11 +37,15 @@
       this.uiTitle = new System.Windows.Forms.TextBox();
       this.uiCancel = new System.Windows.Forms.Button();
       this.uiOk = new System.Windows.Forms.Button();
+      this.uiDependencies = new System.Windows.Forms.CheckedListBox();
+      this.label4 = new System.Windows.Forms.Label();
       this.groupBox1.SuspendLayout();
       this.SuspendLayout();
       // 
       // groupBox1
       // 
+      this.groupBox1.Controls.Add(this.label4);
+      this.groupBox1.Controls.Add(this.uiDependencies);
       this.groupBox1.Controls.Add(this.label3);
       this.groupBox1.Controls.Add(this.label2);
       this.groupBox1.Controls.Add(this.label1);
@@ -51,7 +55,7 @@
       this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.groupBox1.Location = new System.Drawing.Point(10, 10);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(340, 213);
+      this.groupBox1.Size = new System.Drawing.Size(340, 373);
       this.groupBox1.TabIndex = 0;
       this.groupBox1.TabStop = false;
       // 
@@ -110,8 +114,9 @@
       // 
       // uiCancel
       // 
+      this.uiCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.uiCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.uiCancel.Location = new System.Drawing.Point(275, 238);
+      this.uiCancel.Location = new System.Drawing.Point(275, 398);
       this.uiCancel.Name = "uiCancel";
       this.uiCancel.Size = new System.Drawing.Size(75, 23);
       this.uiCancel.TabIndex = 1;
@@ -120,7 +125,8 @@
       // 
       // uiOk
       // 
-      this.uiOk.Location = new System.Drawing.Point(194, 238);
+      this.uiOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.uiOk.Location = new System.Drawing.Point(194, 398);
       this.uiOk.Name = "uiOk";
       this.uiOk.Size = new System.Drawing.Size(75, 23);
       this.uiOk.TabIndex = 2;
@@ -128,12 +134,29 @@
       this.uiOk.UseVisualStyleBackColor = true;
       this.uiOk.Click += new System.EventHandler(this.uiOk_Click);
       // 
+      // uiDependencies
+      // 
+      this.uiDependencies.FormattingEnabled = true;
+      this.uiDependencies.Location = new System.Drawing.Point(106, 202);
+      this.uiDependencies.Name = "uiDependencies";
+      this.uiDependencies.Size = new System.Drawing.Size(216, 154);
+      this.uiDependencies.TabIndex = 6;
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(8, 202);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(79, 13);
+      this.label4.TabIndex = 7;
+      this.label4.Text = "Dependencies:";
+      // 
       // EntityDlg
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.uiCancel;
-      this.ClientSize = new System.Drawing.Size(360, 273);
+      this.ClientSize = new System.Drawing.Size(360, 433);
       this.ControlBox = false;
       this.Controls.Add(this.uiOk);
       this.Controls.Add(this.uiCancel);
@@ -161,5 +184,7 @@
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button uiCancel;
     private System.Windows.Forms.Button uiOk;
+    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.CheckedListBox uiDependencies;
   }
 }

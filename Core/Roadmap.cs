@@ -146,6 +146,24 @@ namespace Roadmapp.Core
 
     //-------------------------------------------------------------------------
 
+    public void GetEntities( Type type,
+                             out ReadOnlyDictionary< string, Entity > entities )
+    {
+      Dictionary< string, Entity > tmp = new Dictionary< string, Entity >();
+
+      if( Entities.ContainsKey( type ) )
+      {
+        foreach( KeyValuePair< string, Entity > pair in Entities[ type ] )
+        {
+          tmp.Add( pair.Key, pair.Value );
+        }
+      }
+
+      entities = new ReadOnlyDictionary< string, Entity >( tmp );
+    }
+
+    //-------------------------------------------------------------------------
+
     public Entity GetEntity( string title )
     {
       foreach( Dictionary< string, Entity > pair in Entities.Values )

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Roadmapp.Entities;
 using Roadmapp.Core;
 
@@ -28,6 +29,7 @@ namespace Roadmapp.UI
         InitializeComponent();
         LookUpEntityTypes();
         PopualteTypeDropdownList();
+        PopulateDependencies();
         PopulateFields();
       }
       catch( Exception ex )
@@ -96,10 +98,64 @@ namespace Roadmapp.UI
 
     //-------------------------------------------------------------------------
 
+    private void PopulateDependencies()
+    {
+      try
+      {
+        uiDependencies.Items.Clear();
+
+        // Iterate through all the entity types.
+        foreach( Type type in EntityTypes.Values )
+        {
+          // Is the entity is allowed to depend on this type?
+          bool dependencyAllowed =
+            EntityRelationshipManager.GetIsDependencyAllowed(
+              Entity.GetType(),
+              type );
+
+          if( dependencyAllowed )
+          {
+            // Get all the entities of the type (which we now know
+            // the entity is allowed to depend on) and add to the UI list.
+            ReadOnlyDictionary< string, Entity > entities;
+            Roadmap.GetEntities( type, out entities );
+
+            foreach( Entity e in entities.Values )
+            {
+              // Can't depend on itself.
+              if( e != Entity )
+              {
+                uiDependencies.Items.Add(
+                  e,
+                  Entity.GetIsDependantOn( e ) );
+              }
+            }
+          }
+        }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
     private void uiOk_Click( object sender, EventArgs e )
     {
       try
       {
+        Entity.Title = uiTitle.Text;
+        Entity.Description = uiDescription.Text;
+
+        foreach( Entity entity in uiDependencies.CheckedItems )
+        {
+          if( Entity.GetIsDependantOn( entity ) == false )
+          {
+            Entity.AddDependency( entity );
+          }
+        }
+
         DialogResult = DialogResult.OK;
         Close();
       }
