@@ -41,6 +41,7 @@
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.uiFileSave = new System.Windows.Forms.ToolStripMenuItem();
       this.uiFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+      this.uiFileLoad = new System.Windows.Forms.ToolStripMenuItem();
       this.flowLayoutPanel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -132,6 +133,7 @@
       this.uiAddEntity.TabIndex = 2;
       this.uiAddEntity.Text = "Add";
       this.uiAddEntity.UseVisualStyleBackColor = true;
+      this.uiAddEntity.Click += new System.EventHandler(this.uiAddEntity_Click);
       // 
       // uiRemoveEntity
       // 
@@ -156,6 +158,7 @@
       // fileToolStripMenuItem
       // 
       this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiFileLoad,
             this.uiFileSave,
             this.uiFileSaveAs});
       this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -175,6 +178,13 @@
       this.uiFileSaveAs.Size = new System.Drawing.Size(152, 22);
       this.uiFileSaveAs.Text = "Save &As...";
       this.uiFileSaveAs.Click += new System.EventHandler(this.uiFileSaveAs_Click);
+      // 
+      // uiFileLoad
+      // 
+      this.uiFileLoad.Name = "uiFileLoad";
+      this.uiFileLoad.Size = new System.Drawing.Size(152, 22);
+      this.uiFileLoad.Text = "&Load";
+      this.uiFileLoad.Click += new System.EventHandler(this.uiFileLoad_Click);
       // 
       // Main
       // 
@@ -216,6 +226,7 @@
     private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem uiFileSave;
     private System.Windows.Forms.ToolStripMenuItem uiFileSaveAs;
+    private System.Windows.Forms.ToolStripMenuItem uiFileLoad;
   }
 }
 

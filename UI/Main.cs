@@ -119,14 +119,13 @@ namespace Roadmapp.UI
     {
       try
       {
-        // No roadmap filename?
         SaveFileDialog dlg = new SaveFileDialog();
         dlg.AddExtension = true;
         dlg.CheckPathExists = true;
         dlg.DefaultExt = "roadmap";
         dlg.Filter = "Roadmap files | *.roadmap";
         dlg.OverwritePrompt = true;
-        dlg.Title = "Save Roadmap";
+        dlg.Title = "Save Roadmap file...";
         dlg.ValidateNames = true;
 
         if( dlg.ShowDialog() == DialogResult.OK )
@@ -134,6 +133,47 @@ namespace Roadmapp.UI
           RoadmapFilename = dlg.FileName;
           SaveRoadmap( RoadmapFilename );
         }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+    
+    //-------------------------------------------------------------------------
+
+    private void uiFileLoad_Click( object sender, EventArgs e )
+    {
+      try
+      {
+        OpenFileDialog dlg = new OpenFileDialog();
+        dlg.AddExtension = true;
+        dlg.CheckFileExists = true;
+        dlg.CheckPathExists = true;
+        dlg.DefaultExt = "roadmap";
+        dlg.Filter = "Roadmap files | *.roadmap";
+        dlg.Title = "Open Roadmap file...";
+        dlg.ValidateNames = true;
+        dlg.Multiselect = false;
+
+        if( dlg.ShowDialog() == DialogResult.OK )
+        {
+          RoadmapFilename = dlg.FileName;
+          ActiveRoadmap = Roadmap.InstantiateFromFile( RoadmapFilename );
+        }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiAddEntity_Click( object sender, EventArgs e )
+    {
+      try
+      {
       }
       catch( Exception ex )
       {
