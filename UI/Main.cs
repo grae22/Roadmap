@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using Roadmapp.Core;
 using Roadmapp.Entities;
 using Roadmapp.Diagrams;
@@ -587,16 +588,33 @@ namespace Roadmapp.UI
     {
       try
       {
+        // Get graphviz bin path from settings.
+        string graphvizBinPath = (string)Properties.Settings.Default[ "graphvizBinPath" ];
+
+        if( graphvizBinPath == null ||
+            Directory.Exists( graphvizBinPath ) == false )
+        {
+          MessageBox.Show(
+            "GraphViz bin path not found.",
+            "GraphViz",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error );
+          return;
+        }
+
+        // Create new diagram.
         GraphVizDiagram diagram =
           new GraphVizDiagram(
-            @"e:\programs\graphviz\bin\",
-            "DiagramTemplate.gv" );
+            graphvizBinPath,
+            "Diagrams" + Path.DirectorySeparatorChar + "DiagramTemplate.gv" );
 
+        // Get all the roadmap's entities.
         Dictionary< int, Entity > entities;
         ActiveRoadmap.GetEntities( out entities );
 
         foreach( Entity entity in entities.Values )
         {
+          // Determine node colour & shape based on entity type.
           Color colour = Color.Gray;
           GraphVizDiagram.Node.NodeShape shape = GraphVizDiagram.Node.NodeShape.PENTAGON;
 
@@ -616,13 +634,17 @@ namespace Roadmapp.UI
             shape = GraphVizDiagram.Node.NodeShape.HEXAGON;
           }
 
+          // Add a node for the entity.
           diagram.AddNode(
             entity.Id,
-            entity.Title,
+            entity.Title +
+              Environment.NewLine +
+              '(' + entity.Points.ToString() + ')',
             50,
             colour,
             shape );
 
+          // Add links for each of this entity's dependencies.
           ReadOnlyCollection< Entity > dependencies;
           ActiveRoadmap.GetDependencies( entity, out dependencies );
 
@@ -632,6 +654,7 @@ namespace Roadmapp.UI
           }
         }
 
+        // Create the actual diagram file.
         diagram.CreateDiagram();
       }
       catch( Exception ex )

@@ -1,10 +1,32 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Reflection;
+using System.IO;
 
 namespace Roadmapp
 {
   static class Program
   {
+    //-------------------------------------------------------------------------
+
+    public static string AppPath { private set; get; }
+
+    //-------------------------------------------------------------------------
+
+    static Program()
+    {
+      try
+      {
+        AppPath =
+          Path.GetDirectoryName(
+            Assembly.GetExecutingAssembly().Location ) + Path.DirectorySeparatorChar;
+      }
+      catch( Exception ex )
+      {
+        HandleException( ex );
+      }
+    }
+
     //-------------------------------------------------------------------------
 
     [STAThread]

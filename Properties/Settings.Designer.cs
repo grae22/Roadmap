@@ -22,5 +22,14 @@ namespace Roadmapp.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\dev\\tools\\graphviz\\bin\\")]
+        public string graphvizBinPath {
+            get {
+                return ((string)(this["graphvizBinPath"]));
+            }
+        }
     }
 }

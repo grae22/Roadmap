@@ -35,6 +35,7 @@ namespace Roadmapp.Entities
     public int Id { get; private set; }
     public string Title { get; set; }
     public string Description { get; set; }
+    public int Points { get; set; } = 0;
 
     // Entity relationships.
     protected EntityRelationshipManager Relationships { get; private set; }
@@ -85,6 +86,11 @@ namespace Roadmapp.Entities
       element = xml.OwnerDocument.CreateElement( "Description" );
       element.InnerText = Description;
       xml.AppendChild( element );
+
+      // Points.
+      element = xml.OwnerDocument.CreateElement( "Points" );
+      element.InnerText = Points.ToString();
+      xml.AppendChild( element );
     }
 
     //-------------------------------------------------------------------------
@@ -115,6 +121,14 @@ namespace Roadmapp.Entities
       }
 
       Description = ( xml[ "Description" ] as XmlElement ).InnerText;
+
+      // Points.
+      if( xml.SelectSingleNode( "Points" ) as XmlElement == null )
+      {
+        throw new ArgumentException( "'Points' element not found." );
+      }
+
+      Points = int.Parse( ( xml[ "Points" ] as XmlElement ).InnerText );
     }
 
     //-------------------------------------------------------------------------

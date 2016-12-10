@@ -47,6 +47,7 @@ namespace Roadmapp.UI
         uiType.Text = Entity.TypeName;
         uiTitle.Text = Entity.Title;
         uiDescription.Text = Entity.Description;
+        uiPoints.Text = Entity.Points.ToString();
       }
       catch( Exception ex )
       {
@@ -145,8 +146,34 @@ namespace Roadmapp.UI
     {
       try
       {
+        // Validate.
+        if( uiTitle.Text.Length == 0 )
+        {
+          MessageBox.Show(
+            "Enter a title.",
+            "Title",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Exclamation );
+          uiTitle.Focus();
+          return;
+        }
+
+        int points;
+        if( int.TryParse( uiPoints.Text, out points ) == false )
+        {
+          MessageBox.Show(
+            "Enter a numeric points value.",
+            "Points",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Exclamation );
+          uiPoints.Focus();
+          return;
+        }
+
+        // Update entity's properties.
         Entity.Title = uiTitle.Text;
         Entity.Description = uiDescription.Text;
+        Entity.Points = points;
 
         foreach( Entity entity in uiDependencies.CheckedItems )
         {
@@ -156,6 +183,7 @@ namespace Roadmapp.UI
           }
         }
 
+        // Close the dlg.
         DialogResult = DialogResult.OK;
         Close();
       }
