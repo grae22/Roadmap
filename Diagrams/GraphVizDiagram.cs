@@ -257,10 +257,15 @@ namespace Roadmapp.Diagrams
         // Get graphvis to generate the diagram.
         string diagramFilename = tmpFilename + ".bmp";
 
-       Process proc =
-        Process.Start(
-          _absGraphVizBinPath + "dot.exe",
-          "\"" + gvFilename + "\" -o \"" + diagramFilename + "\" -T bmp" );
+        ProcessStartInfo info =
+          new ProcessStartInfo(
+            _absGraphVizBinPath + "dot.exe",
+            "\"" + gvFilename + "\" -o \"" + diagramFilename + "\" -T bmp" );
+
+        info.CreateNoWindow = true;
+        info.UseShellExecute = false;
+
+        Process proc = Process.Start( info );
 
         proc.WaitForExit( 10000 );
 

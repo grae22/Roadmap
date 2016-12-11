@@ -584,12 +584,13 @@ namespace Roadmapp.UI
 
     //-------------------------------------------------------------------------
 
-    private void uiDiagramsGenerate_Click( object sender, EventArgs e )
+    private void UpdateDiagram()
     {
       try
       {
         // Get graphviz bin path from settings.
-        string graphvizBinPath = (string)Properties.Settings.Default[ "graphvizBinPath" ];
+        string graphvizBinPath =
+          (string)Properties.Settings.Default[ "graphvizBinPath" ];
 
         if( graphvizBinPath == null ||
             Directory.Exists( graphvizBinPath ) == false )
@@ -620,17 +621,17 @@ namespace Roadmapp.UI
 
           if( entity is GoalEntity )
           {
-            colour = Color.Green;
+            colour = Color.LightGreen;
             shape = GraphVizDiagram.Node.NodeShape.BOX;
           }
           else if( entity is StrategyEntity )
           {
-            colour = Color.Blue;
+            colour = Color.LightBlue;
             shape = GraphVizDiagram.Node.NodeShape.ELLIPSE;
           }
           else if( entity is RealisationEntity )
           {
-            colour = Color.Yellow;
+            colour = Color.Bisque;
             shape = GraphVizDiagram.Node.NodeShape.HEXAGON;
           }
 
@@ -655,7 +656,12 @@ namespace Roadmapp.UI
         }
 
         // Create the actual diagram file.
-        diagram.CreateDiagram();
+        string diagramFilename = diagram.CreateDiagram();
+
+        if( diagramFilename != null )
+        {
+          uiDiagram.Image = new Bitmap( diagramFilename );
+        }
       }
       catch( Exception ex )
       {
@@ -679,6 +685,23 @@ namespace Roadmapp.UI
           ActiveRoadmap = new Roadmap();
           UpdateAppTitle();
           PopulateEntityLists();
+        }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiMainTabs_SelectedIndexChanged( object sender, EventArgs e )
+    {
+      try
+      {
+        if( uiMainTabs.SelectedTab == uiDiagramTab )
+        {
+          UpdateDiagram();
         }
       }
       catch( Exception ex )
