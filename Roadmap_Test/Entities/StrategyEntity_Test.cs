@@ -36,7 +36,7 @@ namespace Roadmapp_Test.Entities
       GoalEntity other = Factory.GetGoalEntity();
 
       bool result = TestObject.AddDependency( other );
-      Assert.IsFalse( result, "Should not be able to depend on Goal entities." );
+      Assert.IsTrue( result, "Should be able to depend on Goal entities." );
     }
 
     //-------------------------------------------------------------------------
