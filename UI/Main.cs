@@ -632,7 +632,7 @@ namespace Roadmapp.UI
           else if( entity is RealisationEntity )
           {
             colour = Color.Bisque;
-            shape = GraphVizDiagram.Node.NodeShape.HEXAGON;
+            shape = GraphVizDiagram.Node.NodeShape.OCTAGON;
           }
 
           // Add a node for the entity.
