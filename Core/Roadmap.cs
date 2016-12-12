@@ -48,15 +48,15 @@ namespace Roadmapp.Core
 
     public Roadmap()
     {
-      EntityRelationships = new EntityRelationshipManager();
-      EntityFactory = new EntityFactory( EntityRelationships );
+      Reset();
     }
 
     //-------------------------------------------------------------------------
 
     public void Reset()
     {
-      EntityRelationships.RemoveAllDependencies();
+      EntityRelationships = new EntityRelationshipManager();
+      EntityFactory = new EntityFactory( EntityRelationships );
       Entities.Clear();
     }
 
@@ -210,6 +210,8 @@ namespace Roadmapp.Core
       {
         Entities[ type ].Remove( entity.Id );
       }
+
+      EntityRelationships.RemoveEntity( entity );
     }
 
     //-------------------------------------------------------------------------
@@ -344,6 +346,22 @@ namespace Roadmapp.Core
           EntityRelationships.AddDependency( dependant, dependency );
         }
       }
+
+      // Update the factory's next id.
+      int highestId = 0;
+
+      foreach( Dictionary< int, Entity > entityByType in Entities.Values )
+      {
+        foreach( Entity entity in entityByType.Values )
+        {
+          if( entity.Id > highestId )
+          {
+            highestId = entity.Id;
+          }
+        }
+      }
+
+      EntityFactory.SetNextId( highestId + 1 );
     }
 
     //-------------------------------------------------------------------------

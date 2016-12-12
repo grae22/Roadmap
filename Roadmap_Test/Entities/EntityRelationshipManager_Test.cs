@@ -98,6 +98,13 @@ namespace Roadmapp_Test.Entities
       // Check the other dependency is still present.
       TestObject.GetDependencies( mock1, out dependencies );
       Assert.IsTrue( dependencies.Contains( mock2_2 ), "Dependency not found." );
+
+      // Remove the remaining dependency entity.
+      TestObject.RemoveEntity( mock2_2 );
+
+      // Check the dependency is now removed.
+      TestObject.GetDependencies( mock1, out dependencies );
+      Assert.IsFalse( dependencies.Contains( mock2_2 ), "Dependency still present." );
     }
 
     //-------------------------------------------------------------------------

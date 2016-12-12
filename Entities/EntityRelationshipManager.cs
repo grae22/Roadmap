@@ -133,5 +133,25 @@ namespace Roadmapp.Entities
     }
 
     //-------------------------------------------------------------------------
+
+    public void RemoveEntity( Entity entity )
+    {
+      // If we have the entity as a dependant - remove it.
+      if( Dependencies.ContainsKey( entity ) )
+      {
+        Dependencies.Remove( entity );
+      }
+
+      // If the entity is a dependency of any dependants, remove it.
+      foreach( List< Entity > dependencies in Dependencies.Values )
+      {
+        if( dependencies.Contains( entity ) )
+        {
+          dependencies.Remove( entity );
+        }
+      }
+    }
+
+    //-------------------------------------------------------------------------
   }
 }
