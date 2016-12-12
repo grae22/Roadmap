@@ -220,7 +220,7 @@ namespace Roadmapp.Diagrams
             "  " +
             thisNodeIdAsString +
             " [" +
-            "label=\"" + n.Text.Replace( '"', '\'' ) + "\" " +
+            "label=<" + n.Text.Replace( '"', '\'' ) + "> " +
             "shape=" + n.ShapeAsString() + " " +
             "fillcolor=\"#" + n.Colour.R.ToString( "X2" ) + n.Colour.G.ToString( "X2" ) + n.Colour.B.ToString( "X2" ) + "\"" +
             "];"

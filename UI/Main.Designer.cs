@@ -54,6 +54,8 @@
       this.uiEntitiesTab = new System.Windows.Forms.TabPage();
       this.uiDiagramTab = new System.Windows.Forms.TabPage();
       this.uiDiagram = new System.Windows.Forms.PictureBox();
+      this.diagramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.uiDiagramShowDescriptions = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -68,7 +70,8 @@
       // menuStrip1
       // 
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.diagramToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Size = new System.Drawing.Size(919, 24);
@@ -338,13 +341,27 @@
       // 
       // uiDiagram
       // 
-      this.uiDiagram.Dock = System.Windows.Forms.DockStyle.None;
       this.uiDiagram.Location = new System.Drawing.Point(3, 3);
       this.uiDiagram.Name = "uiDiagram";
       this.uiDiagram.Size = new System.Drawing.Size(905, 484);
       this.uiDiagram.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.uiDiagram.TabIndex = 0;
       this.uiDiagram.TabStop = false;
+      // 
+      // diagramToolStripMenuItem
+      // 
+      this.diagramToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiDiagramShowDescriptions});
+      this.diagramToolStripMenuItem.Name = "diagramToolStripMenuItem";
+      this.diagramToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+      this.diagramToolStripMenuItem.Text = "&Diagram";
+      // 
+      // uiDiagramShowDescriptions
+      // 
+      this.uiDiagramShowDescriptions.Name = "uiDiagramShowDescriptions";
+      this.uiDiagramShowDescriptions.Size = new System.Drawing.Size(170, 22);
+      this.uiDiagramShowDescriptions.Text = "Show &descriptions";
+      this.uiDiagramShowDescriptions.Click += new System.EventHandler(this.uiDiagramShowDescriptions_Click);
       // 
       // Main
       // 
@@ -403,6 +420,8 @@
     private System.Windows.Forms.TabPage uiEntitiesTab;
     private System.Windows.Forms.TabPage uiDiagramTab;
     private System.Windows.Forms.PictureBox uiDiagram;
+    private System.Windows.Forms.ToolStripMenuItem diagramToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem uiDiagramShowDescriptions;
   }
 }
 

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Web;
 using Roadmapp.Core;
 using Roadmapp.Entities;
 using Roadmapp.Diagrams;
@@ -635,12 +636,27 @@ namespace Roadmapp.UI
             shape = GraphVizDiagram.Node.NodeShape.OCTAGON;
           }
 
+          // Build entity text.
+          string entityText =
+            string.Format(
+              "<B>{0}</B><BR/>({1})",
+              HttpUtility.HtmlEncode( entity.Title ),
+              entity.Points );
+
+          if( uiDiagramShowDescriptions.Checked &&
+              entity.Description.Length > 0 )
+          {
+            entityText +=
+              "<BR/>" +
+              HttpUtility.HtmlEncode(
+                entity.Description ).Replace(
+                  Environment.NewLine, "<BR ALIGN='LEFT' />" ) + "<BR ALIGN='LEFT' />";
+          }
+
           // Add a node for the entity.
           diagram.AddNode(
             entity.Id,
-            entity.Title +
-              Environment.NewLine +
-              '(' + entity.Points.ToString() + ')',
+            entityText,
             50,
             colour,
             shape );
@@ -703,6 +719,21 @@ namespace Roadmapp.UI
         {
           UpdateDiagram();
         }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiDiagramShowDescriptions_Click( object sender, EventArgs e )
+    {
+      try
+      {
+        uiDiagramShowDescriptions.Checked = !uiDiagramShowDescriptions.Checked;
+        UpdateDiagram();
       }
       catch( Exception ex )
       {
