@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using Roadmapp.Entities;
 using Roadmapp.Core;
 
@@ -11,6 +12,9 @@ namespace Roadmapp.UI
   partial class EntityDlg : Form
   {
     //-------------------------------------------------------------------------
+
+    private static Point LastPosition { get; set; } = Point.Empty;
+    private static Size LastSize { get; set; } = Size.Empty;
 
     private Roadmap Roadmap { get; set; }
     private Entity Entity { get; set; }
@@ -31,6 +35,33 @@ namespace Roadmapp.UI
         PopualteTypeDropdownList();
         PopulateDependencies();
         PopulateFields();
+
+        // Restore previous pos & size.
+        if( LastPosition != Point.Empty )
+        {
+          StartPosition = FormStartPosition.Manual;
+          Location = LastPosition;
+        }
+
+        if( LastSize != Size.Empty )
+        {
+          Size = LastSize;
+        }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+    
+    private void EntityDlg_FormClosing( object sender, FormClosingEventArgs e )
+    {
+      try
+      {
+        LastPosition = Location;
+        LastSize = Size;
       }
       catch( Exception ex )
       {

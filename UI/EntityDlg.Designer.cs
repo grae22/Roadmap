@@ -29,6 +29,8 @@
     private void InitializeComponent()
     {
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.label5 = new System.Windows.Forms.Label();
+      this.uiPoints = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.uiDependencies = new System.Windows.Forms.CheckedListBox();
       this.label3 = new System.Windows.Forms.Label();
@@ -39,13 +41,14 @@
       this.uiTitle = new System.Windows.Forms.TextBox();
       this.uiCancel = new System.Windows.Forms.Button();
       this.uiOk = new System.Windows.Forms.Button();
-      this.label5 = new System.Windows.Forms.Label();
-      this.uiPoints = new System.Windows.Forms.TextBox();
       this.groupBox1.SuspendLayout();
       this.SuspendLayout();
       // 
       // groupBox1
       // 
+      this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.groupBox1.Controls.Add(this.label5);
       this.groupBox1.Controls.Add(this.uiPoints);
       this.groupBox1.Controls.Add(this.label4);
@@ -56,12 +59,30 @@
       this.groupBox1.Controls.Add(this.uiDescription);
       this.groupBox1.Controls.Add(this.uiType);
       this.groupBox1.Controls.Add(this.uiTitle);
-      this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.groupBox1.Location = new System.Drawing.Point(10, 10);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(340, 397);
+      this.groupBox1.Size = new System.Drawing.Size(349, 417);
       this.groupBox1.TabIndex = 0;
       this.groupBox1.TabStop = false;
+      // 
+      // label5
+      // 
+      this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(48, 385);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(39, 13);
+      this.label5.TabIndex = 9;
+      this.label5.Text = "Points:";
+      // 
+      // uiPoints
+      // 
+      this.uiPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.uiPoints.Location = new System.Drawing.Point(106, 382);
+      this.uiPoints.Name = "uiPoints";
+      this.uiPoints.Size = new System.Drawing.Size(48, 20);
+      this.uiPoints.TabIndex = 8;
+      this.uiPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
       // label4
       // 
@@ -74,11 +95,15 @@
       // 
       // uiDependencies
       // 
+      this.uiDependencies.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.uiDependencies.CheckOnClick = true;
       this.uiDependencies.FormattingEnabled = true;
+      this.uiDependencies.IntegralHeight = false;
       this.uiDependencies.Location = new System.Drawing.Point(106, 202);
       this.uiDependencies.Name = "uiDependencies";
-      this.uiDependencies.Size = new System.Drawing.Size(216, 154);
+      this.uiDependencies.Size = new System.Drawing.Size(225, 174);
       this.uiDependencies.TabIndex = 6;
       // 
       // label3
@@ -110,10 +135,12 @@
       // 
       // uiDescription
       // 
+      this.uiDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.uiDescription.Location = new System.Drawing.Point(106, 72);
       this.uiDescription.Multiline = true;
       this.uiDescription.Name = "uiDescription";
-      this.uiDescription.Size = new System.Drawing.Size(216, 124);
+      this.uiDescription.Size = new System.Drawing.Size(225, 124);
       this.uiDescription.TabIndex = 2;
       // 
       // uiType
@@ -129,16 +156,18 @@
       // 
       // uiTitle
       // 
+      this.uiTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.uiTitle.Location = new System.Drawing.Point(106, 46);
       this.uiTitle.Name = "uiTitle";
-      this.uiTitle.Size = new System.Drawing.Size(216, 20);
+      this.uiTitle.Size = new System.Drawing.Size(225, 20);
       this.uiTitle.TabIndex = 0;
       // 
       // uiCancel
       // 
       this.uiCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.uiCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.uiCancel.Location = new System.Drawing.Point(275, 422);
+      this.uiCancel.Location = new System.Drawing.Point(284, 442);
       this.uiCancel.Name = "uiCancel";
       this.uiCancel.Size = new System.Drawing.Size(75, 23);
       this.uiCancel.TabIndex = 1;
@@ -148,7 +177,7 @@
       // uiOk
       // 
       this.uiOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.uiOk.Location = new System.Drawing.Point(194, 422);
+      this.uiOk.Location = new System.Drawing.Point(203, 442);
       this.uiOk.Name = "uiOk";
       this.uiOk.Size = new System.Drawing.Size(75, 23);
       this.uiOk.TabIndex = 2;
@@ -156,39 +185,22 @@
       this.uiOk.UseVisualStyleBackColor = true;
       this.uiOk.Click += new System.EventHandler(this.uiOk_Click);
       // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(48, 365);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(39, 13);
-      this.label5.TabIndex = 9;
-      this.label5.Text = "Points:";
-      // 
-      // uiPoints
-      // 
-      this.uiPoints.Location = new System.Drawing.Point(106, 362);
-      this.uiPoints.Name = "uiPoints";
-      this.uiPoints.Size = new System.Drawing.Size(48, 20);
-      this.uiPoints.TabIndex = 8;
-      this.uiPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      // 
       // EntityDlg
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.uiCancel;
-      this.ClientSize = new System.Drawing.Size(360, 457);
+      this.ClientSize = new System.Drawing.Size(369, 477);
       this.ControlBox = false;
       this.Controls.Add(this.uiOk);
       this.Controls.Add(this.uiCancel);
       this.Controls.Add(this.groupBox1);
-      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.Name = "EntityDlg";
       this.Padding = new System.Windows.Forms.Padding(10, 10, 10, 50);
       this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
       this.Text = "Entity Properties";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EntityDlg_FormClosing);
       this.groupBox1.ResumeLayout(false);
       this.groupBox1.PerformLayout();
       this.ResumeLayout(false);
