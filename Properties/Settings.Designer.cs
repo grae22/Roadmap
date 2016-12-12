@@ -25,7 +25,7 @@ namespace Roadmapp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("c:\\dev\\tools\\graphviz\\bin\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("e:\\programs\\graphviz\\bin\\")]
         public string graphvizBinPath {
             get {
                 return ((string)(this["graphvizBinPath"]));

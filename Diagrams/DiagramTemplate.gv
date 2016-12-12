@@ -1,6 +1,6 @@
 digraph DependencyDiagramTemplate
 {
-  ranksep=0.5;
+  ranksep=0.75;
 
   node [style="filled" fontname="arial" fontsize="9.0"];
 

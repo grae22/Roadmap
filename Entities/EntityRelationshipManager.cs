@@ -153,5 +153,15 @@ namespace Roadmapp.Entities
     }
 
     //-------------------------------------------------------------------------
+
+    public void RemoveDependencies( Entity dependant )
+    {
+      if( Dependencies.ContainsKey( dependant ) )
+      {
+        Dependencies[ dependant ].Clear();
+      }
+    }
+
+    //-------------------------------------------------------------------------
   }
 }

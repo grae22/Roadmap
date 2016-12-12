@@ -194,14 +194,6 @@ namespace Roadmapp.Core
 
     //-------------------------------------------------------------------------
 
-    public void GetDependencies( Entity dependant,
-                                 out ReadOnlyCollection< Entity > dependencies )
-    {
-      EntityRelationships.GetDependencies( dependant, out dependencies );
-    }
-
-    //-------------------------------------------------------------------------
-
     public void RemoveEntity( Entity entity )
     {
       Type type = entity.GetType();

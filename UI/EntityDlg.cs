@@ -175,12 +175,11 @@ namespace Roadmapp.UI
         Entity.Description = uiDescription.Text;
         Entity.Points = points;
 
+        Entity.RemoveDependencies();
+
         foreach( Entity entity in uiDependencies.CheckedItems )
         {
-          if( Entity.GetIsDependantOn( entity ) == false )
-          {
-            Entity.AddDependency( entity );
-          }
+          Entity.AddDependency( entity );
         }
 
         // Close the dlg.

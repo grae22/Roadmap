@@ -647,7 +647,7 @@ namespace Roadmapp.UI
 
           // Add links for each of this entity's dependencies.
           ReadOnlyCollection< Entity > dependencies;
-          ActiveRoadmap.GetDependencies( entity, out dependencies );
+          entity.GetDependencies( entity, out dependencies );
 
           foreach( Entity dependency in dependencies )
           {

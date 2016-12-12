@@ -91,38 +91,38 @@
       // uiFileNew
       // 
       this.uiFileNew.Name = "uiFileNew";
-      this.uiFileNew.Size = new System.Drawing.Size(152, 22);
+      this.uiFileNew.Size = new System.Drawing.Size(123, 22);
       this.uiFileNew.Text = "&New";
       this.uiFileNew.Click += new System.EventHandler(this.uiFileNew_Click);
       // 
       // toolStripSeparator2
       // 
       this.toolStripSeparator2.Name = "toolStripSeparator2";
-      this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+      this.toolStripSeparator2.Size = new System.Drawing.Size(120, 6);
       // 
       // uiFileLoad
       // 
       this.uiFileLoad.Name = "uiFileLoad";
-      this.uiFileLoad.Size = new System.Drawing.Size(152, 22);
+      this.uiFileLoad.Size = new System.Drawing.Size(123, 22);
       this.uiFileLoad.Text = "&Load";
       this.uiFileLoad.Click += new System.EventHandler(this.uiFileLoad_Click);
       // 
       // toolStripSeparator1
       // 
       this.toolStripSeparator1.Name = "toolStripSeparator1";
-      this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+      this.toolStripSeparator1.Size = new System.Drawing.Size(120, 6);
       // 
       // uiFileSave
       // 
       this.uiFileSave.Name = "uiFileSave";
-      this.uiFileSave.Size = new System.Drawing.Size(152, 22);
+      this.uiFileSave.Size = new System.Drawing.Size(123, 22);
       this.uiFileSave.Text = "&Save";
       this.uiFileSave.Click += new System.EventHandler(this.uiFileSave_Click);
       // 
       // uiFileSaveAs
       // 
       this.uiFileSaveAs.Name = "uiFileSaveAs";
-      this.uiFileSaveAs.Size = new System.Drawing.Size(152, 22);
+      this.uiFileSaveAs.Size = new System.Drawing.Size(123, 22);
       this.uiFileSaveAs.Text = "Save &As...";
       this.uiFileSaveAs.Click += new System.EventHandler(this.uiFileSaveAs_Click);
       // 
@@ -326,6 +326,7 @@
       // 
       // uiDiagramTab
       // 
+      this.uiDiagramTab.AutoScroll = true;
       this.uiDiagramTab.Controls.Add(this.uiDiagram);
       this.uiDiagramTab.Location = new System.Drawing.Point(4, 22);
       this.uiDiagramTab.Name = "uiDiagramTab";
@@ -337,10 +338,11 @@
       // 
       // uiDiagram
       // 
-      this.uiDiagram.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.uiDiagram.Dock = System.Windows.Forms.DockStyle.None;
       this.uiDiagram.Location = new System.Drawing.Point(3, 3);
       this.uiDiagram.Name = "uiDiagram";
       this.uiDiagram.Size = new System.Drawing.Size(905, 484);
+      this.uiDiagram.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.uiDiagram.TabIndex = 0;
       this.uiDiagram.TabStop = false;
       // 
@@ -367,6 +369,7 @@
       this.uiMainTabs.ResumeLayout(false);
       this.uiEntitiesTab.ResumeLayout(false);
       this.uiDiagramTab.ResumeLayout(false);
+      this.uiDiagramTab.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.uiDiagram)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();

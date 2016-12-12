@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="graphvizBinPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">c:\dev\tools\graphviz\bin\</Value>
+      <Value Profile="(Default)">e:\programs\graphviz\bin\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

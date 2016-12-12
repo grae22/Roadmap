@@ -86,7 +86,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Diagrams\DiagramTemplate.gv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
