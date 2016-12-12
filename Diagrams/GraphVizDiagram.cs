@@ -173,7 +173,7 @@ namespace Roadmapp.Diagrams
             }
 
             // Add new-line to end the current line.
-            text = text.Insert( endOfLastWordIndex, Environment.NewLine );
+            text = text.Insert( endOfLastWordIndex, "<BR/>" );
 
             // Next line.
             i = endOfLastWordIndex + 2;
