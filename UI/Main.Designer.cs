@@ -353,6 +353,7 @@
       this.uiDiagramTab.TabIndex = 1;
       this.uiDiagramTab.Text = "Dependency Diagram";
       this.uiDiagramTab.UseVisualStyleBackColor = true;
+      this.uiDiagramTab.Scroll += new System.Windows.Forms.ScrollEventHandler(this.uiDiagramTab_Scroll);
       // 
       // uiDiagram
       // 
@@ -362,6 +363,8 @@
       this.uiDiagram.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.uiDiagram.TabIndex = 0;
       this.uiDiagram.TabStop = false;
+      this.uiDiagram.MouseMove += new System.Windows.Forms.MouseEventHandler(this.uiDiagram_MouseMove);
+      this.uiDiagram.MouseUp += new System.Windows.Forms.MouseEventHandler(this.uiDiagram_MouseUp);
       // 
       // Main
       // 

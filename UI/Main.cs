@@ -18,6 +18,9 @@ namespace Roadmapp.UI
     private string RoadmapFilename { get; set; }
     private Roadmap ActiveRoadmap { get; set; }
 
+    // Diagram mouse drag navigation.
+    private Point DiagramDragPrevPos { get; set; } = Point.Empty;
+
     //-------------------------------------------------------------------------
 
     public Main( string roadmapFilename )
@@ -738,6 +741,58 @@ namespace Roadmapp.UI
       {
         uiDiagramShowDescriptions.Checked = !uiDiagramShowDescriptions.Checked;
         UpdateDiagram();
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiDiagramTab_Scroll( object sender, ScrollEventArgs e )
+    {
+      try
+      {
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiDiagram_MouseUp( object sender, MouseEventArgs e )
+    {
+      try
+      {
+        DiagramDragPrevPos = Point.Empty;
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiDiagram_MouseMove( object sender, MouseEventArgs e )
+    {
+      try
+      {
+        //if( e.Button == MouseButtons.Left )
+        //{
+        //  if( DiagramDragPrevPos != Point.Empty )
+        //  {
+        //    Point velocity =
+        //      new Point(
+        //        -( DiagramDragPrevPos.X - e.Location.X ),
+        //        -( DiagramDragPrevPos.Y - e.Location.Y ) );
+        //  }
+
+        //  DiagramDragPrevPos = e.Location;
+        //}
       }
       catch( Exception ex )
       {
