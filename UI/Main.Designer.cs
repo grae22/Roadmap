@@ -36,6 +36,8 @@
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.uiFileSave = new System.Windows.Forms.ToolStripMenuItem();
       this.uiFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+      this.diagramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.uiDiagramShowDescriptions = new System.Windows.Forms.ToolStripMenuItem();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.uiRemoveStrategy = new System.Windows.Forms.Button();
@@ -54,8 +56,6 @@
       this.uiEntitiesTab = new System.Windows.Forms.TabPage();
       this.uiDiagramTab = new System.Windows.Forms.TabPage();
       this.uiDiagram = new System.Windows.Forms.PictureBox();
-      this.diagramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.uiDiagramShowDescriptions = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -128,6 +128,21 @@
       this.uiFileSaveAs.Size = new System.Drawing.Size(123, 22);
       this.uiFileSaveAs.Text = "Save &As...";
       this.uiFileSaveAs.Click += new System.EventHandler(this.uiFileSaveAs_Click);
+      // 
+      // diagramToolStripMenuItem
+      // 
+      this.diagramToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiDiagramShowDescriptions});
+      this.diagramToolStripMenuItem.Name = "diagramToolStripMenuItem";
+      this.diagramToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+      this.diagramToolStripMenuItem.Text = "&Diagram";
+      // 
+      // uiDiagramShowDescriptions
+      // 
+      this.uiDiagramShowDescriptions.Name = "uiDiagramShowDescriptions";
+      this.uiDiagramShowDescriptions.Size = new System.Drawing.Size(170, 22);
+      this.uiDiagramShowDescriptions.Text = "Show &descriptions";
+      this.uiDiagramShowDescriptions.Click += new System.EventHandler(this.uiDiagramShowDescriptions_Click);
       // 
       // tableLayoutPanel1
       // 
@@ -324,7 +339,7 @@
       this.uiEntitiesTab.Padding = new System.Windows.Forms.Padding(3);
       this.uiEntitiesTab.Size = new System.Drawing.Size(911, 490);
       this.uiEntitiesTab.TabIndex = 0;
-      this.uiEntitiesTab.Text = "Entities";
+      this.uiEntitiesTab.Text = "Dependencies";
       this.uiEntitiesTab.UseVisualStyleBackColor = true;
       // 
       // uiDiagramTab
@@ -336,7 +351,7 @@
       this.uiDiagramTab.Padding = new System.Windows.Forms.Padding(3);
       this.uiDiagramTab.Size = new System.Drawing.Size(911, 490);
       this.uiDiagramTab.TabIndex = 1;
-      this.uiDiagramTab.Text = "Diagram";
+      this.uiDiagramTab.Text = "Dependency Diagram";
       this.uiDiagramTab.UseVisualStyleBackColor = true;
       // 
       // uiDiagram
@@ -347,21 +362,6 @@
       this.uiDiagram.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.uiDiagram.TabIndex = 0;
       this.uiDiagram.TabStop = false;
-      // 
-      // diagramToolStripMenuItem
-      // 
-      this.diagramToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uiDiagramShowDescriptions});
-      this.diagramToolStripMenuItem.Name = "diagramToolStripMenuItem";
-      this.diagramToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-      this.diagramToolStripMenuItem.Text = "&Diagram";
-      // 
-      // uiDiagramShowDescriptions
-      // 
-      this.uiDiagramShowDescriptions.Name = "uiDiagramShowDescriptions";
-      this.uiDiagramShowDescriptions.Size = new System.Drawing.Size(170, 22);
-      this.uiDiagramShowDescriptions.Text = "Show &descriptions";
-      this.uiDiagramShowDescriptions.Click += new System.EventHandler(this.uiDiagramShowDescriptions_Click);
       // 
       // Main
       // 

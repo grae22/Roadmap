@@ -637,11 +637,13 @@ namespace Roadmapp.UI
           }
 
           // Build entity text.
-          string entityText =
+          string entityTitle =
             string.Format(
-              "<B>{0}</B><BR/>({1})",
+              "<B>{0}</B><BR/>({1}) ",    // Trailing space prevents brackets from being partially clipped.
               HttpUtility.HtmlEncode( entity.Title ),
               entity.Points );
+
+          string entityText = null;
 
           if( uiDiagramShowDescriptions.Checked &&
               entity.Description.Length > 0 )
@@ -650,12 +652,14 @@ namespace Roadmapp.UI
               "<BR/>" +
               HttpUtility.HtmlEncode(
                 entity.Description ).Replace(
-                  Environment.NewLine, "<BR ALIGN='LEFT' />" ) + "<BR ALIGN='LEFT' />";
+                  Environment.NewLine, "<BR ALIGN='LEFT' />" ) +
+              "<BR ALIGN='LEFT' />";
           }
 
           // Add a node for the entity.
           diagram.AddNode(
             entity.Id,
+            entityTitle,
             entityText,
             50,
             colour,

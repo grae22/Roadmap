@@ -142,6 +142,7 @@ namespace Roadmapp.Diagrams
     // maxCharsBeforeWrappingText: Set to 0 for no wrapping.
 
     public Node AddNode( int id,
+                         string title,
                          string text,
                          int maxCharsBeforeWrappingText,
                          Color colour,
@@ -149,40 +150,19 @@ namespace Roadmapp.Diagrams
     {
       if( Nodes.ContainsKey( id ) == false )
       {
-        // Wrap the text?
-        if( maxCharsBeforeWrappingText > 0 &&
-            text.Length > maxCharsBeforeWrappingText )
-        {
-          // Iterate through all chars in text.
-          for( int i = 0; i + maxCharsBeforeWrappingText < text.Length; )
-          {
-            // Find the end of the last word that can be on the current line.
-            int endOfLastWordIndex = 0;
-
-            for( int c = i; c < i + maxCharsBeforeWrappingText; c++ )
-            {
-              if( text[ c ] == ' ' )
-              {
-                endOfLastWordIndex = c;
-              }
-            }
-
-            if( endOfLastWordIndex == 0 )
-            {
-              endOfLastWordIndex = i + maxCharsBeforeWrappingText;
-            }
-
-            // Add new-line to end the current line.
-            text = text.Insert( endOfLastWordIndex, "<BR/>" );
-
-            // Next line.
-            i = endOfLastWordIndex + 2;
-          }
-        }
+        title = WrapText( title, maxCharsBeforeWrappingText, "CENTER" );
+        text = WrapText( text, maxCharsBeforeWrappingText, "LEFT" );
 
         // Create new node.
-        Node newNode = new Node( id, text, colour, shape );
+        Node newNode =
+          new Node(
+            id,
+            title + "<BR ALIGN='CENTER' />" + text,
+            colour,
+            shape );
+
         Nodes.Add( id, newNode );
+
         return newNode;
       }
 
@@ -306,6 +286,77 @@ namespace Roadmapp.Diagrams
       {
         // Ignore.
       }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private string WrapText( string text,
+                             int wrapThreshold,
+                             string alignment )
+    {
+      if( text == null || wrapThreshold < 1 )
+      {
+        return text;
+      }
+
+      // Wrap the text?
+      if( wrapThreshold > 0 &&
+          text.Length > wrapThreshold )
+      {
+        // Iterate through all chars in text.
+        bool isHtmlTagOpen = false;
+
+        for( int i = 0; i + wrapThreshold < text.Length; )
+        {
+          // Find the end of the last word that can be on the current line.
+          int endOfLastWordIndex = 0;
+          bool foundBreak = false;
+
+          for( int c = i; c < i + wrapThreshold; c++ )
+          {
+            if( text[ c ] == '<' )
+            {
+              isHtmlTagOpen = true;
+
+              if( text.IndexOf( "<BR", c ) == c )
+              {
+                foundBreak = true;
+                break;
+              }
+            }
+            else if( text[ c ] == '>' )
+            {
+              isHtmlTagOpen = false;
+            }
+
+            if( isHtmlTagOpen == false &&
+                text[ c ] == ' ' )
+            {
+              endOfLastWordIndex = c;
+            }
+          }
+
+          if( foundBreak )
+          {
+            //i += wrapThreshold;
+            i++;
+            continue;
+          }
+
+          if( endOfLastWordIndex == 0 )
+          {
+            endOfLastWordIndex = i + wrapThreshold;
+          }
+
+          // Add new-line to end the current line.
+          text = text.Insert( endOfLastWordIndex, "<BR ALIGN='" + alignment + "' />" );
+
+          // Next line.
+          i = endOfLastWordIndex + ( "<BR ALIGN='" + alignment + "' />" ).Length + 1;
+        }
+      }
+
+      return text;
     }
 
     //-------------------------------------------------------------------------
