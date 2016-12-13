@@ -53,8 +53,10 @@ namespace Roadmapp_Test.Entities
     {
       Entity directDependant = Factory.GetStrategyEntity();
 
+      // Create direct dependant.
       directDependant.AddDependency( TestObject.Entity );
 
+      // Create indirect dependants.
       Factory.GetStrategyEntity().AddDependency( directDependant );
       Factory.GetStrategyEntity().AddDependency( directDependant );
       Factory.GetStrategyEntity().AddDependency( directDependant );
@@ -62,6 +64,26 @@ namespace Roadmapp_Test.Entities
       TestObject.Calculate();
 
       Assert.AreEqual( 4U, TestObject.DependantCount, "Dependant count is incorrect." );
+    }
+
+    //-------------------------------------------------------------------------
+    
+    [TestMethod]
+    public void NoDuplicateDependantsViaDifferentRoutes()
+    {
+      Entity directDependant1 = Factory.GetStrategyEntity();
+      Entity directDependant2 = Factory.GetStrategyEntity();
+      Entity indirectDependant = Factory.GetGoalEntity();
+
+      indirectDependant.AddDependency( directDependant1 );
+      indirectDependant.AddDependency( directDependant2 );
+
+      directDependant1.AddDependency( TestObject.Entity );
+      directDependant2.AddDependency( TestObject.Entity );
+
+      TestObject.Calculate();
+
+      Assert.AreEqual( 3U, TestObject.DependantCount, "Dependant count is incorrect." );
     }
 
     //-------------------------------------------------------------------------

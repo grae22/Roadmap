@@ -639,12 +639,25 @@ namespace Roadmapp.UI
             shape = GraphVizDiagram.Node.NodeShape.OCTAGON;
           }
 
+          // Update the entity's metrics.
+          entity.Metrics.Calculate();
+
+          // Build format string based on what we want to show.
+          string format = "<B>{0}</B>";
+
+          if( uiDiagramShowMetrics.Checked )
+          {
+            format += "<BR/>P:{1}({2}) D:{3}";
+          }
+
           // Build entity text.
           string entityTitle =
             string.Format(
-              "<B>{0}</B><BR/>({1}) ",    // Trailing space prevents brackets from being partially clipped.
+              format + ' ',    // Trailing space prevents text being partially clipped.
               HttpUtility.HtmlEncode( entity.Title ),
-              entity.Points );
+              entity.Points,
+              entity.Metrics.DependantsPointsTotal,
+              entity.Metrics.DependantCount );
 
           string entityText = null;
 
@@ -726,6 +739,21 @@ namespace Roadmapp.UI
         {
           UpdateDiagram();
         }
+      }
+      catch( Exception ex )
+      {
+        Program.HandleException( ex );
+      }
+    }
+
+    //-------------------------------------------------------------------------
+
+    private void uiDiagramShowMetrics_Click( object sender, EventArgs e )
+    {
+      try
+      {
+        uiDiagramShowMetrics.Checked = !uiDiagramShowMetrics.Checked;
+        UpdateDiagram();
       }
       catch( Exception ex )
       {

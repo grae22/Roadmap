@@ -42,6 +42,9 @@ namespace Roadmapp.Entities
     // Entity relationships.
     protected EntityRelationshipManager Relationships { get; private set; }
 
+    // Metrics.
+    public EntityMetrics Metrics { get; private set; }
+
     //-------------------------------------------------------------------------
 
     public Entity( int id,
@@ -49,6 +52,7 @@ namespace Roadmapp.Entities
     {
       Id = id;
       Relationships = relationshipManager;
+      Metrics = new EntityMetrics( this );
     }
 
     //-------------------------------------------------------------------------

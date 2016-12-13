@@ -13,6 +13,9 @@ namespace Roadmapp.Entities
     // dependency on his entity.
     public uint DependantCount { get; private set; }
 
+    // The sum of all dependants' points.
+    public int DependantsPointsTotal { get; private set; }
+
     //-------------------------------------------------------------------------
 
     public EntityMetrics( Entity entity )
@@ -24,32 +27,39 @@ namespace Roadmapp.Entities
 
     public void Calculate()
     {
-      CalculateDependantCount( this );
+      DependantCount = 0;
+      DependantsPointsTotal = 0;
+
+      CalculateMetrics( Entity );
     }
 
     //-------------------------------------------------------------------------
 
-    private static void CalculateDependantCount( EntityMetrics metrics )
+    private void CalculateMetrics( Entity entity,
+                                   List< Entity > countedEntities = null )
     {
-      metrics.DependantCount = CountDependants( metrics.Entity );
-    }
-
-    //-------------------------------------------------------------------------
-
-    private static uint CountDependants( Entity entity )
-    {
-      uint count = 0;
+      if( countedEntities == null )
+      {
+        countedEntities = new List< Entity >();
+      }
 
       List< Entity > dependants;
       entity.GetDependants( out dependants );
 
       foreach( Entity dependant in dependants )
       {
-        count++;
-        count += CountDependants( dependant );
-      }
+        if( countedEntities.Contains( dependant ) == false )
+        {
+          DependantCount++;
+          DependantsPointsTotal += dependant.Points;
 
-      return count;
+          // Add to list so we don't process this entity again.
+          countedEntities.Add( dependant );
+
+          // Recurse into dependant's dependants.
+          CalculateMetrics( dependant, countedEntities );
+        }
+      }
     }
 
     //-------------------------------------------------------------------------

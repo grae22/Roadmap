@@ -56,6 +56,8 @@
       this.uiEntitiesTab = new System.Windows.Forms.TabPage();
       this.uiDiagramTab = new System.Windows.Forms.TabPage();
       this.uiDiagram = new System.Windows.Forms.PictureBox();
+      this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+      this.uiDiagramShowMetrics = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -132,7 +134,9 @@
       // diagramToolStripMenuItem
       // 
       this.diagramToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uiDiagramShowDescriptions});
+            this.uiDiagramShowMetrics,
+            this.uiDiagramShowDescriptions,
+            this.toolStripSeparator3});
       this.diagramToolStripMenuItem.Name = "diagramToolStripMenuItem";
       this.diagramToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
       this.diagramToolStripMenuItem.Text = "&Diagram";
@@ -140,8 +144,8 @@
       // uiDiagramShowDescriptions
       // 
       this.uiDiagramShowDescriptions.Name = "uiDiagramShowDescriptions";
-      this.uiDiagramShowDescriptions.Size = new System.Drawing.Size(170, 22);
-      this.uiDiagramShowDescriptions.Text = "Show &descriptions";
+      this.uiDiagramShowDescriptions.Size = new System.Drawing.Size(171, 22);
+      this.uiDiagramShowDescriptions.Text = "Show &Descriptions";
       this.uiDiagramShowDescriptions.Click += new System.EventHandler(this.uiDiagramShowDescriptions_Click);
       // 
       // tableLayoutPanel1
@@ -366,6 +370,18 @@
       this.uiDiagram.MouseMove += new System.Windows.Forms.MouseEventHandler(this.uiDiagram_MouseMove);
       this.uiDiagram.MouseUp += new System.Windows.Forms.MouseEventHandler(this.uiDiagram_MouseUp);
       // 
+      // toolStripSeparator3
+      // 
+      this.toolStripSeparator3.Name = "toolStripSeparator3";
+      this.toolStripSeparator3.Size = new System.Drawing.Size(168, 6);
+      // 
+      // uiDiagramShowMetrics
+      // 
+      this.uiDiagramShowMetrics.Name = "uiDiagramShowMetrics";
+      this.uiDiagramShowMetrics.Size = new System.Drawing.Size(171, 22);
+      this.uiDiagramShowMetrics.Text = "Show &Metrics";
+      this.uiDiagramShowMetrics.Click += new System.EventHandler(this.uiDiagramShowMetrics_Click);
+      // 
       // Main
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,6 +394,7 @@
       this.Name = "Main";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Roadmap";
+      this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
       this.Load += new System.EventHandler(this.Main_Load);
       this.menuStrip1.ResumeLayout(false);
@@ -425,6 +442,8 @@
     private System.Windows.Forms.PictureBox uiDiagram;
     private System.Windows.Forms.ToolStripMenuItem diagramToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem uiDiagramShowDescriptions;
+    private System.Windows.Forms.ToolStripMenuItem uiDiagramShowMetrics;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
   }
 }
 
