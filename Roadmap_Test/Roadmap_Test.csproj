@@ -60,6 +60,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Core\Roadmap_Test.cs" />
+    <Compile Include="Entities\EntityMetrics_Test.cs" />
     <Compile Include="Entities\EntityMocks.cs" />
     <Compile Include="Entities\EntityRelationshipManager_Test.cs" />
     <Compile Include="Entities\ActionEntity_Test.cs" />
