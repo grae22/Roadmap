@@ -230,6 +230,21 @@ namespace Roadmapp.Diagrams
           Directory.CreateDirectory( tmpPath );
         }
 
+        // Delete any old images.
+        string[] oldImages = Directory.GetFiles( tmpPath );
+
+        foreach( string oldImagePath in oldImages )
+        {
+          try
+          {
+            File.Delete( oldImagePath );
+          }
+          catch( Exception )
+          {
+            // Ignore.
+          }
+        }
+
         // Write the gv file
         string gvFilename = tmpFilename + ".gv";
         File.WriteAllText( gvFilename, buffer );
