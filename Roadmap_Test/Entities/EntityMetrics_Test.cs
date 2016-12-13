@@ -18,18 +18,50 @@ namespace Roadmapp_Test.Entities
     {
       TestObject = new EntityMetrics( Factory.GetRealisationEntity() );
       Assert.IsNotNull( TestObject, "Failed to instantiate TestObject." );
-
-      Factory.GetStrategyEntity().AddDependency( TestObject.Entity );
-
-      TestObject.Calculate();
     }
 
     //-------------------------------------------------------------------------
 
     [TestMethod]
-    public void DependantCount()
+    public void SingleDependantCount()
     {
+      Factory.GetStrategyEntity().AddDependency( TestObject.Entity );
+
+      TestObject.Calculate();
+
       Assert.AreEqual( 1U, TestObject.DependantCount, "Dependant count is incorrect." );
+    }
+
+    //-------------------------------------------------------------------------
+
+    [TestMethod]
+    public void MultipleDependantsCount()
+    {
+      Factory.GetStrategyEntity().AddDependency( TestObject.Entity );
+      Factory.GetStrategyEntity().AddDependency( TestObject.Entity );
+      Factory.GetStrategyEntity().AddDependency( TestObject.Entity );
+
+      TestObject.Calculate();
+
+      Assert.AreEqual( 3U, TestObject.DependantCount, "Dependant count is incorrect." );
+    }
+
+    //-------------------------------------------------------------------------
+    
+    [TestMethod]
+    public void MultipleIndirectDependantsCount()
+    {
+      Entity directDependant = Factory.GetStrategyEntity();
+
+      directDependant.AddDependency( TestObject.Entity );
+
+      Factory.GetStrategyEntity().AddDependency( directDependant );
+      Factory.GetStrategyEntity().AddDependency( directDependant );
+      Factory.GetStrategyEntity().AddDependency( directDependant );
+
+      TestObject.Calculate();
+
+      Assert.AreEqual( 4U, TestObject.DependantCount, "Dependant count is incorrect." );
     }
 
     //-------------------------------------------------------------------------
