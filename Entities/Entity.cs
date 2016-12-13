@@ -37,7 +37,11 @@ namespace Roadmapp.Entities
     public int Id { get; private set; }
     public string Title { get; set; }
     public string Description { get; set; }
-    public int Points { get; set; } = 0;
+
+    // Points.
+    public int ValuePoints { get; set; } = 0;
+    public int EffortPoints { get; set; } = 0;
+    public int PriorityPoints { get; set; } = 0;
 
     // Entity relationships.
     protected EntityRelationshipManager Relationships { get; private set; }
@@ -115,8 +119,16 @@ namespace Roadmapp.Entities
       xml.AppendChild( element );
 
       // Points.
-      element = xml.OwnerDocument.CreateElement( "Points" );
-      element.InnerText = Points.ToString();
+      element = xml.OwnerDocument.CreateElement( "ValuePoints" );
+      element.InnerText = ValuePoints.ToString();
+      xml.AppendChild( element );
+
+      element = xml.OwnerDocument.CreateElement( "EffortPoints" );
+      element.InnerText = EffortPoints.ToString();
+      xml.AppendChild( element );
+
+      element = xml.OwnerDocument.CreateElement( "PriorityPoints" );
+      element.InnerText = PriorityPoints.ToString();
       xml.AppendChild( element );
     }
 
@@ -150,12 +162,20 @@ namespace Roadmapp.Entities
       Description = ( xml[ "Description" ] as XmlElement ).InnerText;
 
       // Points.
-      if( xml.SelectSingleNode( "Points" ) as XmlElement == null )
+      if( xml.SelectSingleNode( "ValuePoints" ) as XmlElement != null )
       {
-        throw new ArgumentException( "'Points' element not found." );
+        ValuePoints = int.Parse( ( xml[ "ValuePoints" ] as XmlElement ).InnerText );
       }
 
-      Points = int.Parse( ( xml[ "Points" ] as XmlElement ).InnerText );
+      if( xml.SelectSingleNode( "EffortPoints" ) as XmlElement != null )
+      {
+        EffortPoints = int.Parse( ( xml[ "EffortPoints" ] as XmlElement ).InnerText );
+      }
+
+      if( xml.SelectSingleNode( "PriorityPoints" ) as XmlElement != null )
+      {
+        PriorityPoints = int.Parse( ( xml[ "PriorityPoints" ] as XmlElement ).InnerText );
+      }
     }
 
     //-------------------------------------------------------------------------

@@ -78,7 +78,9 @@ namespace Roadmapp.UI
         uiType.Text = Entity.TypeName;
         uiTitle.Text = Entity.Title;
         uiDescription.Text = Entity.Description;
-        uiPoints.Text = Entity.Points.ToString();
+        uiValuePoints.Text = Entity.ValuePoints.ToString();
+        uiEffortPoints.Text = Entity.EffortPoints.ToString();
+        uiPriorityPoints.Text = Entity.PriorityPoints.ToString();
       }
       catch( Exception ex )
       {
@@ -189,22 +191,48 @@ namespace Roadmapp.UI
           return;
         }
 
-        int points;
-        if( int.TryParse( uiPoints.Text, out points ) == false )
+        int valuePoints;
+        if( int.TryParse( uiValuePoints.Text, out valuePoints ) == false )
         {
           MessageBox.Show(
             "Enter a numeric points value.",
-            "Points",
+            "Value Points",
             MessageBoxButtons.OK,
             MessageBoxIcon.Exclamation );
-          uiPoints.Focus();
+          uiValuePoints.Focus();
+          return;
+        }
+
+        int effortPoints;
+        if( int.TryParse( uiEffortPoints.Text, out effortPoints ) == false )
+        {
+          MessageBox.Show(
+            "Enter a numeric points value.",
+            "Effort Points",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Exclamation );
+          uiEffortPoints.Focus();
+          return;
+        }
+
+        int priorityPoints;
+        if( int.TryParse( uiPriorityPoints.Text, out priorityPoints ) == false )
+        {
+          MessageBox.Show(
+            "Enter a numeric points value.",
+            "Priority Points",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Exclamation );
+          uiPriorityPoints.Focus();
           return;
         }
 
         // Update entity's properties.
         Entity.Title = uiTitle.Text;
         Entity.Description = uiDescription.Text;
-        Entity.Points = points;
+        Entity.ValuePoints = valuePoints;
+        Entity.EffortPoints = effortPoints;
+        Entity.PriorityPoints = priorityPoints;
 
         Entity.RemoveDependencies();
 

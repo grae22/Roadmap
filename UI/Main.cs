@@ -617,6 +617,21 @@ namespace Roadmapp.UI
         Dictionary< int, Entity > entities;
         ActiveRoadmap.GetEntities( out entities );
 
+        // Update each entity's metrics and calculate totals so we can calc percentages later.
+        double largestValuePoints = 0.0;
+        double largestEffortPoints = 0.0;
+        double largestPriorityPoints = 0.0;
+
+        foreach( Entity entity in entities.Values )
+        {
+          entity.Metrics.Calculate();
+
+          largestValuePoints = Math.Max( largestValuePoints, entity.Metrics.DependantsValuePointsTotal );
+          largestEffortPoints = Math.Max( largestEffortPoints, entity.Metrics.DependantsEffortPointsTotal );
+          largestPriorityPoints = Math.Max( largestPriorityPoints, entity.Metrics.DependantsPriorityPointsTotal );
+        }
+
+        // Add each entity to the diagram.
         foreach( Entity entity in entities.Values )
         {
           // Determine node colour & shape based on entity type.
@@ -639,15 +654,12 @@ namespace Roadmapp.UI
             shape = GraphVizDiagram.Node.NodeShape.OCTAGON;
           }
 
-          // Update the entity's metrics.
-          entity.Metrics.Calculate();
-
           // Build format string based on what we want to show.
           string format = "<B>{0}</B>";
 
           if( uiDiagramShowMetrics.Checked )
           {
-            format += "<BR/>P:{1}({2}) D:{3}";
+            format += "<BR/><B>V:</B>{1} <B>E:</B>{2} <B>P:</B>{3} <B>D:</B>{4}";
           }
 
           // Build entity text.
@@ -655,8 +667,9 @@ namespace Roadmapp.UI
             string.Format(
               format + ' ',    // Trailing space prevents text being partially clipped.
               HttpUtility.HtmlEncode( entity.Title ),
-              entity.Points,
-              entity.Metrics.DependantsPointsTotal,
+              (int)( entity.Metrics.DependantsValuePointsTotal / largestValuePoints * 100 ),
+              (int)( entity.Metrics.DependantsEffortPointsTotal / largestEffortPoints * 100 ),
+              (int)( entity.Metrics.DependantsPriorityPointsTotal / largestPriorityPoints * 100 ),
               entity.Metrics.DependantCount );
 
           string entityText = null;
@@ -677,7 +690,7 @@ namespace Roadmapp.UI
             entity.Id,
             entityTitle,
             entityText,
-            50,
+            60,
             colour,
             shape );
 

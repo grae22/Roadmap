@@ -14,7 +14,9 @@ namespace Roadmapp.Entities
     public uint DependantCount { get; private set; }
 
     // The sum of all dependants' points.
-    public int DependantsPointsTotal { get; private set; }
+    public int DependantsValuePointsTotal { get; private set; }
+    public int DependantsEffortPointsTotal { get; private set; }
+    public int DependantsPriorityPointsTotal { get; private set; }
 
     //-------------------------------------------------------------------------
 
@@ -28,7 +30,9 @@ namespace Roadmapp.Entities
     public void Calculate()
     {
       DependantCount = 0;
-      DependantsPointsTotal = 0;
+      DependantsValuePointsTotal = Entity.ValuePoints;
+      DependantsEffortPointsTotal = Entity.EffortPoints;
+      DependantsPriorityPointsTotal = Entity.PriorityPoints;
 
       CalculateMetrics( Entity );
     }
@@ -42,6 +46,10 @@ namespace Roadmapp.Entities
       {
         countedEntities = new List< Entity >();
       }
+      else if( countedEntities.Contains( entity ) )
+      {
+        return;
+      }
 
       List< Entity > dependants;
       entity.GetDependants( out dependants );
@@ -51,13 +59,15 @@ namespace Roadmapp.Entities
         if( countedEntities.Contains( dependant ) == false )
         {
           DependantCount++;
-          DependantsPointsTotal += dependant.Points;
-
-          // Add to list so we don't process this entity again.
-          countedEntities.Add( dependant );
+          DependantsValuePointsTotal += dependant.ValuePoints;
+          DependantsEffortPointsTotal += dependant.EffortPoints;
+          DependantsPriorityPointsTotal += dependant.PriorityPoints;
 
           // Recurse into dependant's dependants.
           CalculateMetrics( dependant, countedEntities );
+
+          // Add to list so we don't process this entity again.
+          countedEntities.Add( dependant );
         }
       }
     }
