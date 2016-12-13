@@ -113,6 +113,22 @@ namespace Roadmapp.Entities
     }
 
     //-------------------------------------------------------------------------
+    
+    public void GetDependants( Entity dependency,
+                               out List< Entity > dependants )
+    {
+      dependants = new List< Entity >();
+
+      foreach( KeyValuePair< Entity, List< Entity > > pair in Dependencies )
+      {
+        if( pair.Value.Contains( dependency ) )
+        {
+          dependants.Add( pair.Key );
+        }
+      }
+    }
+
+    //-------------------------------------------------------------------------
 
     public bool GetDoesDependencyExist( Entity dependant,
                                         Entity dependency )

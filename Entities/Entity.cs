@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Roadmapp.Entities
@@ -59,10 +60,16 @@ namespace Roadmapp.Entities
 
     //-------------------------------------------------------------------------
 
-    public void GetDependencies( Entity dependant,
-                                 out ReadOnlyCollection< Entity > dependencies )
+    public void GetDependencies( out ReadOnlyCollection< Entity > dependencies )
     {
-      Relationships.GetDependencies( dependant, out dependencies );
+      Relationships.GetDependencies( this, out dependencies );
+    }
+
+    //-------------------------------------------------------------------------
+
+    public void GetDependants( out List< Entity > dependants )
+    {
+      Relationships.GetDependants( this, out dependants );
     }
 
     //-------------------------------------------------------------------------

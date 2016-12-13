@@ -111,7 +111,7 @@ namespace Roadmapp_Test.Core
 
       // Check the dependencies are present.
       ReadOnlyCollection< Entity > dependencies;
-      newMock1.GetDependencies( newMock1, out dependencies );
+      newMock1.GetDependencies( out dependencies );
 
       Assert.IsTrue( dependencies.Contains( newMock2_1 ), "Dependency not found." );
       Assert.IsTrue( dependencies.Contains( newMock2_2 ), "Dependency not found." );
@@ -153,7 +153,7 @@ namespace Roadmapp_Test.Core
 
       // Check the dependencies are present.
       ReadOnlyCollection< Entity > dependencies;
-      newMock1.GetDependencies( newMock1, out dependencies );
+      newMock1.GetDependencies( out dependencies );
 
       Assert.IsTrue( dependencies.Contains( newMock2_1 ), "Dependency not found." );
       Assert.IsTrue( dependencies.Contains( newMock2_2 ), "Dependency not found." );

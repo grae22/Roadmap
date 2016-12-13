@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Roadmapp.Entities;
 
@@ -44,13 +45,16 @@ namespace Roadmapp_Test.Entities
     [TestMethod]
     public void AddDependency()
     {
+      // Set up allowed dependencies.
       EntityRelationshipManager.AddAllowedDependency(
         typeof( EntityMocks.EntityMock1 ),
         typeof( EntityMocks.EntityMock2 ) );
 
+      // Create entities.
       EntityMocks.EntityMock1 mock1 = new EntityMocks.EntityMock1( 0, TestObject );
       EntityMocks.EntityMock2 mock2 = new EntityMocks.EntityMock2( 1, TestObject );
 
+      // Create dependencies between entities.
       bool result = TestObject.AddDependency( mock1, mock2 );
       Assert.IsTrue( result, "Failed to add dependency." );
 
@@ -60,12 +64,20 @@ namespace Roadmapp_Test.Entities
       result = TestObject.AddDependency( mock1, mock1 );
       Assert.IsFalse( result, "Added itself as a dependency." );
 
+      // GetDependencies() method.
       ReadOnlyCollection< Entity > dependencies;
       TestObject.GetDependencies( mock1, out dependencies );
       Assert.IsTrue( dependencies.Contains( mock2 ), "Dependency not found." );
 
+      // GetDoesDependencyExist() method.
       Assert.IsTrue( TestObject.GetDoesDependencyExist( mock1, mock2 ) );
       Assert.IsFalse( TestObject.GetDoesDependencyExist( mock2, mock1 ) );
+
+      // GetDependants() method.
+      List< Entity > dependants;
+      TestObject.GetDependants( mock2, out dependants );
+
+      Assert.IsTrue( dependants.Contains( mock1 ), "Dependant not found." );
     }
 
     //-------------------------------------------------------------------------
