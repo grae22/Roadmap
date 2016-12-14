@@ -690,7 +690,7 @@ namespace Roadmapp.UI
             entity.Id,
             entityTitle,
             entityText,
-            60,
+            40,
             colour,
             shape );
 
