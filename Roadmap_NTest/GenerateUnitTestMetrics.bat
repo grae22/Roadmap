@@ -32,7 +32,7 @@ exit /b %errorlevel%
 -register:user ^
 -target:"%~dp0..\packages\NUnit.ConsoleRunner.3.5.0\tools\nunit3-console.exe" ^
 -targetargs:"\"%~dp0..\Roadmap_NTest\bin\Debug\Roadmapp_NTest.dll\"" ^
--filter:"+[*]* -[Roadmapp_NTest]* -[*]Roadmapp.RouteConfig" ^
+-filter:"+[*]* -[Roadmapp]Roadmapp.Program -[Roadmapp]Roadmapp.UI.* -[Roadmapp]Roadmapp.Properties.* -[Roadmapp]Roadmapp.Diagrams.* -[Roadmapp_NTest]* -[*]Roadmapp.RouteConfig" ^
 -mergebyhash ^
 -skipautoprops ^
 -output:"%~dp0\GeneratedReports\Roadmapp.xml"
