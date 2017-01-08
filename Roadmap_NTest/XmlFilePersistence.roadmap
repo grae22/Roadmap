@@ -1,0 +1,39 @@
+<Roadmap>
+  <Entities>
+    <Entity type="Roadmapp_NTest.Entities.EntityMocks+EntityMock1, Roadmapp_NTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <Id>0</Id>
+      <Title>Unnamed</Title>
+      <Description>
+      </Description>
+      <ValuePoints>0</ValuePoints>
+      <EffortPoints>0</EffortPoints>
+      <PriorityPoints>0</PriorityPoints>
+    </Entity>
+    <Entity type="Roadmapp_NTest.Entities.EntityMocks+EntityMock2, Roadmapp_NTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <Id>1</Id>
+      <Title>Unnamed1</Title>
+      <Description>
+      </Description>
+      <ValuePoints>0</ValuePoints>
+      <EffortPoints>0</EffortPoints>
+      <PriorityPoints>0</PriorityPoints>
+    </Entity>
+    <Entity type="Roadmapp_NTest.Entities.EntityMocks+EntityMock2, Roadmapp_NTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <Id>2</Id>
+      <Title>Unnamed2</Title>
+      <Description>
+      </Description>
+      <ValuePoints>0</ValuePoints>
+      <EffortPoints>0</EffortPoints>
+      <PriorityPoints>0</PriorityPoints>
+    </Entity>
+  </Entities>
+  <EntityDependencies>
+    <Entity id="0">
+      <Dependency id="1" />
+      <Dependency id="2" />
+    </Entity>
+    <Entity id="1" />
+    <Entity id="2" />
+  </EntityDependencies>
+</Roadmap>
